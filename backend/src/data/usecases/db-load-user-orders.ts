@@ -1,6 +1,6 @@
-import { OrderModel } from '@/domain/models/order'
-import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
-import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
+import { OrderModel } from '@/domain/models'
+import { LoadUserOrders } from '@/domain/usecases'
+import { LoadUserOrdersRepo } from '@/data/protocols'
 
 export class DbLoadUserOrders implements LoadUserOrders {
   constructor (private readonly loadUserOrdersRepo: LoadUserOrdersRepo) {}

@@ -1,6 +1,6 @@
+import { OrderMySqlRepository } from '@/infra/db/mysql'
 import Order from '@/infra/sequelize/models/Order'
-import { dbOrdersMock } from '@/tests/helpers/db-mocks'
-import { OrderMySqlRepository } from '@/infra/db/mysql/order-repository'
+import { dbOrdersMock } from '@/tests/helpers'
 
 const makeSut = (): OrderMySqlRepository => {
   return new OrderMySqlRepository()

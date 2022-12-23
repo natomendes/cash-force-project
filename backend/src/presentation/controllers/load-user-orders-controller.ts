@@ -1,4 +1,4 @@
-import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
+import { LoadUserOrders } from '@/domain/usecases'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 import { ok, serverError } from '@/presentation/helpers/http-helpers'
 

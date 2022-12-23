@@ -1,5 +1,4 @@
-import { LoadUserByIdRepo } from '@/data/protocols/load-user-by-id-repo'
-import { UserModel } from '@/domain/models/user'
+import { LoadUserByIdRepo, UserModel } from '@/data/protocols'
 import User from '@/infra/sequelize/models/User'
 
 export class UserMySqlRepository implements LoadUserByIdRepo {

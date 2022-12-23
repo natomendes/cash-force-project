@@ -1,5 +1,4 @@
-import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
-import { OrderModel } from '@/domain/models/order'
+import { LoadUserOrdersRepo, OrderModel } from '@/data/protocols'
 import Buyer from '@/infra/sequelize/models/Buyer'
 import Order from '@/infra/sequelize/models/Order'
 import Provider from '@/infra/sequelize/models/Provider'

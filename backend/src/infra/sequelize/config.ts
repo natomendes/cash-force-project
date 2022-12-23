@@ -1,11 +1,12 @@
+import env from '@/main/config/env'
 import { Options } from 'sequelize'
 
 const config: Options = {
-  username: 'root',
-  password: '123456',
-  database: 'cashforce_v3',
-  host: 'localhost',
-  port: 3306,
+  username: env.mySqlUsername,
+  password: env.mySqlPassword,
+  database: env.mySqlDatabase,
+  host: env.mySqlHost,
+  port: env.mySqlPort,
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Z'

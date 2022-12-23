@@ -1,7 +1,7 @@
+import { LoadUserByToken } from '@/domain/usecases'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
-import { AccessDeniedError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers/http-helpers'
-import { LoadUserByToken } from '@/domain/usecases/load-user-by-token'
+import { AccessDeniedError } from '@/presentation/errors'
 
 export class AuthMiddleware implements Controller {
   constructor (private readonly loadUserByToken: LoadUserByToken) {}

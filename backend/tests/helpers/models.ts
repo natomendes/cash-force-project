@@ -1,5 +1,4 @@
-import { OrderModel } from '@/domain/models/order'
-import { UserModel } from '@/domain/models/user'
+import { OrderModel, UserModel } from '@/domain/models'
 
 export const mockUserModel = (): UserModel => ({
   id: 1,

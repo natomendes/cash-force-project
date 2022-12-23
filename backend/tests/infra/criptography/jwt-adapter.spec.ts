@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken'
 import { JwtAdapter } from '@/infra/criptography/jwt-adapter'
-import { mockUserModel } from '@/tests/helpers/models'
+import { mockUserModel } from '@/tests/helpers'
+import jwt from 'jsonwebtoken'
 
 jest.mock('jsonwebtoken', () => ({
   verify (): jwt.JwtPayload {

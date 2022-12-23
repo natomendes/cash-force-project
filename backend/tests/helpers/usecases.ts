@@ -1,11 +1,7 @@
-import { Decrypter } from '@/data/protocols/decrypter'
-import { LoadUserByIdRepo } from '@/data/protocols/load-user-by-id-repo'
-import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
-import { OrderModel } from '@/domain/models/order'
-import { UserModel } from '@/domain/models/user'
-import { LoadUserByToken } from '@/domain/usecases/load-user-by-token'
-import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
-import { mockOrderModelList, mockUserModel } from '@/tests/helpers/models'
+import { Decrypter, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
+import { mockOrderModelList, mockUserModel } from '@/tests/helpers'
+import { LoadUserByToken, LoadUserOrders } from '@/domain/usecases'
+import { OrderModel, UserModel } from '@/domain/models'
 
 export const mockLoadUserOrders = (): LoadUserOrders => {
   class LoadUserOrdersStub implements LoadUserOrders {

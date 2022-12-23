@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express'
 import { Controller, HttpRequest } from '@/presentation/protocols'
+import { NextFunction, Request, Response } from 'express'
 
 export const adaptMiddleware = (middleware: Controller) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -12,6 +12,7 @@ export const adaptMiddleware = (middleware: Controller) => {
         .status(httpResponse.statusCode)
         .json({ error: httpResponse.body.message })
     }
+
     Object.assign(req, httpResponse.body)
 
     next()

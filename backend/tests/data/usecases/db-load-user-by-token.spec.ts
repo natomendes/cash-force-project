@@ -1,8 +1,6 @@
-import { Decrypter } from '@/data/protocols/decrypter'
-import { DbLoadUserByToken } from '@/data/usecases/db-load-user-by-token'
-import { LoadUserByIdRepo } from '@/data/protocols/load-user-by-id-repo'
-import { mockDecrypter, mockLoadUserByIdRepo } from '@/tests/helpers/usecases'
-import { mockUserModel } from '@/tests/helpers/models'
+import { mockDecrypter, mockLoadUserByIdRepo, mockUserModel } from '@/tests/helpers'
+import { Decrypter, LoadUserByIdRepo } from '@/data/protocols'
+import { DbLoadUserByToken } from '@/data/usecases'
 
 type SutTypes = {
   sut: DbLoadUserByToken

@@ -1,8 +1,8 @@
-import { LoadUserByToken } from '@/domain/usecases/load-user-by-token'
+import { LoadUserByToken } from '@/domain/usecases'
+import { mockLoadUserByToken } from '@/tests/helpers'
 import { AccessDeniedError } from '@/presentation/errors'
-import { forbidden, ok, serverError } from '@/presentation/helpers/http-helpers'
 import { AuthMiddleware } from '@/presentation/middlewares'
-import { mockLoadUserByToken } from '@/tests/helpers/usecases'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http-helpers'
 
 const mockRequest = {
   headers: {

@@ -1,8 +1,7 @@
-import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
-import { LoadUserOrdersController } from '@/presentation/controllers/load-user-orders-controller'
+import { LoadUserOrders } from '@/domain/usecases'
+import { mockLoadUserOrders, mockOrderModelList } from '@/tests/helpers'
 import { ok, serverError } from '@/presentation/helpers/http-helpers'
-import { mockLoadUserOrders } from '@/tests/helpers/usecases'
-import { mockOrderModelList } from '@/tests/helpers/models'
+import { LoadUserOrdersController } from '@/presentation/controllers/load-user-orders-controller'
 
 type SutTypes = {
   sut: LoadUserOrdersController

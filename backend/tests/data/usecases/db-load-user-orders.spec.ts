@@ -1,7 +1,6 @@
-import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
-import { DbLoadUserOrders } from '@/data/usecases/db-load-user-orders'
-import { mockOrderModelList } from '@/tests/helpers/models'
-import { mockLoadUserOrdersRepo } from '@/tests/helpers/usecases'
+import { mockOrderModelList, mockLoadUserOrdersRepo } from '@/tests/helpers'
+import { LoadUserOrdersRepo } from '@/data/protocols'
+import { DbLoadUserOrders } from '@/data/usecases'
 
 type SutTypes = {
   sut: DbLoadUserOrders

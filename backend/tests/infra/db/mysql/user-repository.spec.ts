@@ -1,6 +1,6 @@
+import { UserMySqlRepository } from '@/infra/db/mysql'
 import User from '@/infra/sequelize/models/User'
-import { mockUserModel } from '@/tests/helpers/models'
-import { UserMySqlRepository } from '@/infra/db/mysql/user-repository'
+import { mockUserModel } from '@/tests/helpers'
 
 const makeSut = (): UserMySqlRepository => {
   return new UserMySqlRepository()

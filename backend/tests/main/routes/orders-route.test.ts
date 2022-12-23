@@ -1,10 +1,9 @@
+import { dbOrdersMock, mockUserModel } from '@/tests/helpers'
+import Order from '@/infra/sequelize/models/Order'
+import User from '@/infra/sequelize/models/User'
+import app from '@/main/config/app'
 import request from 'supertest'
 import jwt from 'jsonwebtoken'
-import app from '@/main/config/app'
-import Order from '@/infra/sequelize/models/Order'
-import { dbOrdersMock } from '@/tests/helpers/db-mocks'
-import { mockUserModel } from '@/tests/helpers/models'
-import User from '@/infra/sequelize/models/User'
 
 jest.mock('jsonwebtoken', () => ({
   verify (): jwt.JwtPayload {
