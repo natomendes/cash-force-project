@@ -2,3 +2,5 @@ node_modules
 dist
 coverage
 data
+!backend/src/data
+!backend/tests/data
