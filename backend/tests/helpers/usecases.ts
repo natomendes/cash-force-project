@@ -1,6 +1,6 @@
 import { OrderModel } from '@/domain/models/order'
 import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
-import { mockOrderModelList } from './models'
+import { mockOrderModelList } from '@/tests/helpers/models'
 
 export const mockLoadUserOrders = (): LoadUserOrders => {
   class LoadUserOrdersStub implements LoadUserOrders {
