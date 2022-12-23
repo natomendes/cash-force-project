@@ -6,8 +6,6 @@ export class DbLoadUserOrders implements LoadUserOrders {
   constructor (private readonly loadUserOrdersRepo: LoadUserOrdersRepo) {}
 
   async load (userId: string): Promise<OrderModel[]> {
-    await this.loadUserOrdersRepo.loadByUserId(userId)
-
-    return null
+    return await this.loadUserOrdersRepo.loadByUserId(userId)
   }
 }
