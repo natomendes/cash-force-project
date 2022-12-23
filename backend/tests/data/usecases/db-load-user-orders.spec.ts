@@ -1,5 +1,6 @@
 import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
 import { DbLoadUserOrders } from '@/data/usecases/db-load-user-orders'
+import { mockOrderModelList } from '@/tests/helpers/models'
 import { mockLoadUserOrdersRepo } from '@/tests/helpers/usecases'
 
 type SutTypes = {
@@ -29,5 +30,11 @@ describe('DbLoadUserOrders Usecase', () => {
     jest.spyOn(loadUserOrdersRepoStub, 'loadByUserId').mockRejectedValueOnce(new Error())
     const promise = sut.load('valid_user_id')
     await expect(promise).rejects.toThrow()
+  })
+
+  it('Should return a list of orders on success', async () => {
+    const { sut } = makeSut()
+    const orders = await sut.load('valid_user_id')
+    expect(orders).toEqual(mockOrderModelList())
   })
 })
