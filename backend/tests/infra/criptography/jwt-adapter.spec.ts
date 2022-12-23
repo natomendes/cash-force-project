@@ -4,7 +4,7 @@ import { mockUserModel } from '@/tests/helpers/models'
 
 jest.mock('jsonwebtoken', () => ({
   verify (): jwt.JwtPayload {
-    return mockUserModel() as jwt.JwtPayload
+    return { user: mockUserModel() }
   }
 }))
 
@@ -19,5 +19,13 @@ describe('Jwt Adapter', () => {
     const verifySpy = jest.spyOn(jwt, 'verify')
     await sut.decrypt('encrypted_token')
     expect(verifySpy).toHaveBeenCalledWith('encrypted_token', secret)
+  })
+
+  it('Should return an user id on jwt.verify success', async () => {
+    const sut = makeSut()
+
+    const user = await sut.decrypt('encrypted_token')
+
+    expect(user).toBe(mockUserModel().id)
   })
 })
