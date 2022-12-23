@@ -1,15 +1,17 @@
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 import { AccessDeniedError } from '@/presentation/errors'
-import { forbidden } from '@/presentation/helpers/http-helpers'
-import { ValidateToken } from '@/domain/usecases/validate-token'
+import { forbidden, ok } from '@/presentation/helpers/http-helpers'
+import { LoadUserByToken } from '@/domain/usecases/load-user-by-token'
 
 export class AuthMiddleware implements Controller {
-  constructor (private readonly validateToken: ValidateToken) {}
+  constructor (private readonly loadUserByToken: LoadUserByToken) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const accessToken = httpRequest.headers?.['x-access-token']
     if (accessToken) {
-      await this.validateToken.validate(accessToken)
+      const user = await this.loadUserByToken.load(accessToken)
+
+      if (user) return ok({ userId: user.id })
     }
 
     return forbidden(new AccessDeniedError())
