@@ -3,7 +3,7 @@ import { UserModel } from '@/domain/models/user'
 
 export const mockUserModel = (): UserModel => ({
   id: 1,
-  name: 'any_name',
+  username: 'any_name',
   email: 'any_email'
 })
 
