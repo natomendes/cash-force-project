@@ -21,47 +21,16 @@ User.init({
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  phoneNumber: {
-    type: DataTypes.STRING,
-    defaultValue: null
-  },
-  mobile: {
-    type: DataTypes.STRING,
-    defaultValue: null
-  },
-  departament: {
-    type: DataTypes.STRING,
-    defaultValue: null
-  },
-  verificationCode: {
-    type: DataTypes.STRING,
-    defaultValue: null
-  },
-  emailChecked: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  },
-  cashforceAdm: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
-  }
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  phoneNumber: { type: DataTypes.STRING, defaultValue: null },
+  mobile: { type: DataTypes.STRING, defaultValue: null },
+  departament: { type: DataTypes.STRING, defaultValue: null },
+  verificationCode: { type: DataTypes.STRING, defaultValue: null },
+  emailChecked: { type: DataTypes.INTEGER, defaultValue: 0 },
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  cashforceAdm: { type: DataTypes.INTEGER, defaultValue: 0 }
 }, {
   underscored: true,
   sequelize: db,

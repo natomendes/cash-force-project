@@ -15,23 +15,10 @@ Cnpj.init({
     primaryKey: true,
     autoIncrement: true
   },
-  cnpj: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  companyType: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+  cnpj: { type: DataTypes.STRING, allowNull: false, unique: true },
+  companyType: { type: DataTypes.STRING, allowNull: false },
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
 }, {
   underscored: true,
   sequelize: db,

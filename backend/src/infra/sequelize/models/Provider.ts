@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize'
 import { Cnpj } from './Cnpj'
 import db from '.'
 
-export class Buyer extends Model {
+export class Provider extends Model {
   declare id: number
   declare name: string
   declare tradingName: string
@@ -20,23 +20,26 @@ export class Buyer extends Model {
   declare neighborhood: string
   declare city: string
   declare state: string
+  declare bank: string
+  declare bankAgency: string
+  declare account: string
+  declare documents: string
   declare phoneNumber: string
   declare situation: string
   declare situationDate: string
   declare email: string
-  declare confirm: number
   declare cnpjId: number
   declare createdAt: Date
   declare updatedAt: Date
 }
 
-Buyer.init({
+Provider.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  name: { type: DataTypes.STRING, defaultValue: null },
+  name: { type: DataTypes.STRING, allowNull: false },
   tradingName: { type: DataTypes.STRING, defaultValue: null },
   cashforceTax: { type: DataTypes.STRING, defaultValue: null },
   responsibleName: { type: DataTypes.STRING, defaultValue: null },
@@ -52,12 +55,15 @@ Buyer.init({
   neighborhood: { type: DataTypes.STRING, defaultValue: null },
   city: { type: DataTypes.STRING, defaultValue: null },
   state: { type: DataTypes.STRING, defaultValue: null },
+  bank: { type: DataTypes.STRING, defaultValue: null },
+  bankAgency: { type: DataTypes.STRING, defaultValue: null },
+  account: { type: DataTypes.STRING, defaultValue: null },
+  documents: { type: DataTypes.STRING, defaultValue: null },
   phoneNumber: { type: DataTypes.STRING, defaultValue: null },
   situation: { type: DataTypes.STRING, defaultValue: null },
   situationDate: { type: DataTypes.STRING, defaultValue: null },
   createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-  confirm: { type: DataTypes.INTEGER, defaultValue: 1 },
   email: { type: DataTypes.STRING, defaultValue: null },
   cnpjId: {
     type: DataTypes.INTEGER,
@@ -70,8 +76,8 @@ Buyer.init({
 }, {
   underscored: true,
   sequelize: db,
-  tableName: 'buyers'
+  tableName: 'providers'
 })
 
-Buyer.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Buyer, { foreignKey: 'cnpjId', as: 'cnpj' })
+Provider.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
+Cnpj.hasOne(Provider, { foreignKey: 'cnpjId', as: 'cnpj' })
