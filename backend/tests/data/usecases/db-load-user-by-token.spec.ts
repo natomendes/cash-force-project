@@ -42,7 +42,7 @@ describe('DbLoadUserByToken', () => {
     expect(loadByIdSpy).toHaveBeenCalledWith(1)
   })
 
-  it('Should return null if LoadUserById returns null', async () => {
+  it('Should return null if LoadUserByIdRepo returns null', async () => {
     const { sut, loadUserByIdRepoStub } = makeSut()
     jest.spyOn(loadUserByIdRepoStub, 'loadById').mockResolvedValueOnce(null)
     const user = await sut.load('encrypted_token')
@@ -53,5 +53,12 @@ describe('DbLoadUserByToken', () => {
     const { sut } = makeSut()
     const user = await sut.load('encrypted_token')
     expect(user).toEqual(mockUserModel())
+  })
+
+  it('Should throw if LoadUserByIdRepo throws', async () => {
+    const { sut, loadUserByIdRepoStub } = makeSut()
+    jest.spyOn(loadUserByIdRepoStub, 'loadById').mockRejectedValueOnce(new Error())
+    const promise = sut.load('encrypted_token')
+    await expect(promise).rejects.toThrow()
   })
 })
