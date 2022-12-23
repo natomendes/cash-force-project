@@ -13,4 +13,14 @@ describe('GET /orders/user', () => {
       })
       .expect(200)
   })
+
+  it('Should return 500 on server error', async () => {
+    jest.spyOn(Order, 'findAll').mockRejectedValueOnce(new Error())
+    await request(app)
+      .get('/orders/user')
+      .send({
+        userId: 1
+      })
+      .expect(500)
+  })
 })
