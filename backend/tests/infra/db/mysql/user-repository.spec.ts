@@ -21,5 +21,12 @@ describe('UserMySqlRepository', () => {
       const user = await sut.loadById(1)
       expect(user).toBeNull()
     })
+
+    it('Should throw if Sequelize throws', async () => {
+      const sut = makeSut()
+      jest.spyOn(User, 'findByPk').mockRejectedValueOnce(new Error())
+      const promise = sut.loadById(1)
+      await expect(promise).rejects.toThrow()
+    })
   })
 })
