@@ -24,7 +24,6 @@ describe('LoadUserOrdersController', () => {
       userId: 'valid_user_id'
     }
     await sut.handle(httpRequest)
-    expect(loadSpy).toHaveBeenCalledWith('valid_user_id'
-    )
+    expect(loadSpy).toHaveBeenCalledWith('valid_user_id')
   })
 })
