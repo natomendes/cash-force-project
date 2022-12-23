@@ -7,5 +7,8 @@ module.exports = {
   transform: {
     '.+\\.ts$': 'ts-jest'
   },
-  roots: ['<rootDir>/src']
+  roots: ['<rootDir>/src'],
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/src/$1'
+  }
 }
