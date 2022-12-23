@@ -14,5 +14,12 @@ describe('UserMySqlRepository', () => {
       const user = await sut.loadById(1)
       expect(user).toEqual(mockUserModel())
     })
+
+    it('Should return null if no user is found', async () => {
+      const sut = makeSut()
+      jest.spyOn(User, 'findByPk').mockResolvedValueOnce(null)
+      const user = await sut.loadById(1)
+      expect(user).toBeNull()
+    })
   })
 })
