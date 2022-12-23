@@ -11,9 +11,8 @@ export class DbLoadUserByToken implements LoadUserByToken {
 
   async load (token: string): Promise<UserModel> {
     const userId = await this.decrypter.decrypt(token)
+    if (!userId) return null
 
-    await this.loadUserById.loadById(userId)
-
-    return null
+    return await this.loadUserById.loadById(userId)
   }
 }
