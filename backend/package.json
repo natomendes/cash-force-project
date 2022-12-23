@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig-build.json",
-    "test": "jest --passWithNoTests",
-    "test:staged": "npm test"
+    "test": "jest --passWithNoTests --silent --runInBand --no-cache",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-unit.config.js",
+    "test:staged": "npm test -- --findRelatedTests"
   },
   "keywords": [],
   "author": "",
