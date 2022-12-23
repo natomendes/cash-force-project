@@ -28,4 +28,13 @@ describe('Jwt Adapter', () => {
 
     expect(user).toBe(mockUserModel().id)
   })
+
+  it('Should return null if jwt verify throws', async () => {
+    const sut = makeSut()
+    jest.spyOn(jwt, 'verify').mockImplementationOnce(() => { throw new Error() })
+
+    const user = await sut.decrypt('encrypted_token')
+
+    expect(user).toBeNull()
+  })
 })
