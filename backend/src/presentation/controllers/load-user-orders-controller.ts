@@ -1,6 +1,6 @@
 import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
-import { ServerError } from '@/presentation/errors'
+import { serverError } from '@/presentation/helpers/http-helpers'
 
 export class LoadUserOrdersController implements Controller {
   constructor (private readonly loadUserOrders: LoadUserOrders) {}
@@ -11,10 +11,7 @@ export class LoadUserOrdersController implements Controller {
 
       return null
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: new ServerError()
-      }
+      return serverError()
     }
   }
 }
