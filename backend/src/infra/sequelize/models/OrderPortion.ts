@@ -31,7 +31,7 @@ OrderPortion.init({
   }
 }, {
   sequelize: db,
-  tableName: 'users'
+  tableName: 'orderportions'
 })
 
 OrderPortion.belongsTo(Order, { foreignKey: 'cnpjId', as: 'cnpj' })
