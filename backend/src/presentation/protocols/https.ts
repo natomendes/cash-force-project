@@ -1,5 +1,6 @@
 export interface HttpRequest {
-  userId: string
+  userId?: string
+  params?: any
 }
 
 export interface HttpResponse {
