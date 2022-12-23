@@ -1,7 +1,7 @@
 import { UserModel } from '@/domain/models/user'
 import { LoadUserByToken } from '@/domain/usecases/load-user-by-token'
 import { AccessDeniedError } from '@/presentation/errors'
-import { forbidden, ok } from '@/presentation/helpers/http-helpers'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http-helpers'
 import { AuthMiddleware } from '@/presentation/middlewares'
 
 type SutTypes = {
@@ -68,5 +68,16 @@ describe('Auth Middleware', () => {
       }
     })
     expect(httpResponse).toEqual(ok({ userId: 1 }))
+  })
+
+  it('Should return server error if LoadUserByToken throws', async () => {
+    const { sut, loadUserByTokenStub } = makeSut()
+    jest.spyOn(loadUserByTokenStub, 'load').mockRejectedValueOnce(new Error())
+    const httpResponse = await sut.handle({
+      headers: {
+        'x-access-token': 'any_token'
+      }
+    })
+    expect(httpResponse).toEqual(serverError())
   })
 })
