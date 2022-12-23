@@ -69,4 +69,14 @@ describe('DbLoadUserByToken', () => {
     const user = await sut.load('encrypted_token')
     expect(user).toBeNull()
   })
+
+  it('Should return an user on success', async () => {
+    const { sut } = makeSut()
+    const user = await sut.load('encrypted_token')
+    expect(user).toEqual({
+      id: 1,
+      name: 'any_name',
+      email: 'any_email'
+    })
+  })
 })
