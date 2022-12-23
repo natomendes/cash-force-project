@@ -4,10 +4,10 @@ import User from '@/infra/sequelize/models/User'
 
 export class UserMySqlRepository implements LoadUserByIdRepo {
   async loadById (userId: number): Promise<UserModel> {
-    const user = await User.findByPk(userId, {
-      include: ['id', 'name', 'email']
-    })
+    const user = await User.findByPk(userId)
+    if (!user) return null
 
-    return user
+    const { id, username, email } = user
+    return { id, username, email }
   }
 }

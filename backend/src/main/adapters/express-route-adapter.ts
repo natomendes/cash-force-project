@@ -3,7 +3,7 @@ import { Controller, HttpRequest } from '@/presentation/protocols'
 
 export const adaptRoute = (controller: Controller) => {
   return async (req: Request, res: Response) => {
-    const httpRequest: HttpRequest = { userId: req.body.userId }
+    const httpRequest: HttpRequest = { userId: req.userId }
 
     const httpResponse = await controller.handle(httpRequest)
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
