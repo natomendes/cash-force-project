@@ -1,4 +1,11 @@
 import { OrderModel } from '@/domain/models/order'
+import { UserModel } from '@/domain/models/user'
+
+export const mockUserModel = (): UserModel => ({
+  id: 1,
+  name: 'any_name',
+  email: 'any_email'
+})
 
 export const mockOrderModelList = (): OrderModel[] => [{
   id: 1,

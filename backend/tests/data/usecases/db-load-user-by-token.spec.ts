@@ -1,29 +1,8 @@
 import { Decrypter } from '@/data/protocols/decrypter'
 import { DbLoadUserByToken } from '@/data/usecases/db-load-user-by-token'
-import { UserModel } from '@/domain/models/user'
 import { LoadUserByIdRepo } from '@/data/protocols/load-user-by-id-repo'
-
-export const mockDecrypter = (): Decrypter => {
-  class DecrypterStub implements Decrypter {
-    async decrypt (_token: string): Promise<number> {
-      return 1
-    }
-  }
-  return new DecrypterStub()
-}
-
-const mockLoadUserByIdRepo = (): LoadUserByIdRepo => {
-  class LoadUserByIdRepoStub implements LoadUserByIdRepo {
-    async loadById (userId: number): Promise<UserModel> {
-      return {
-        id: 1,
-        name: 'any_name',
-        email: 'any_email'
-      }
-    }
-  }
-  return new LoadUserByIdRepoStub()
-}
+import { mockDecrypter, mockLoadUserByIdRepo } from '@/tests/helpers/usecases'
+import { mockUserModel } from '@/tests/helpers/models'
 
 type SutTypes = {
   sut: DbLoadUserByToken
@@ -73,10 +52,6 @@ describe('DbLoadUserByToken', () => {
   it('Should return an user on success', async () => {
     const { sut } = makeSut()
     const user = await sut.load('encrypted_token')
-    expect(user).toEqual({
-      id: 1,
-      name: 'any_name',
-      email: 'any_email'
-    })
+    expect(user).toEqual(mockUserModel())
   })
 })
