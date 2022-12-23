@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize'
-import { Order } from './Order'
+import Order from './Order'
 import db from '.'
 
-export class OrderPortion extends Model {
+class OrderPortion extends Model {
   declare id: number
   declare nDup: string
   declare dVenc: string
@@ -34,5 +34,7 @@ OrderPortion.init({
   tableName: 'orderportions'
 })
 
-OrderPortion.belongsTo(Order, { foreignKey: 'cnpjId', as: 'cnpj' })
-Order.hasOne(OrderPortion, { foreignKey: 'cnpjId', as: 'cnpj' })
+OrderPortion.belongsTo(Order, { foreignKey: 'cnpjId' })
+Order.hasOne(OrderPortion, { foreignKey: 'cnpjId' })
+
+export default OrderPortion

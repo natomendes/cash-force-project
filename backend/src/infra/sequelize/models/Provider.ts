@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize'
-import { Cnpj } from './Cnpj'
+import Cnpj from './Cnpj'
 import db from '.'
 
-export class Provider extends Model {
+class Provider extends Model {
   declare id: number
   declare name: string
   declare tradingName: string
@@ -78,5 +78,7 @@ Provider.init({
   tableName: 'providers'
 })
 
-Provider.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Provider, { foreignKey: 'cnpjId', as: 'cnpj' })
+Provider.belongsTo(Cnpj, { foreignKey: 'cnpjId' })
+Cnpj.hasOne(Provider, { foreignKey: 'cnpjId' })
+
+export default Provider

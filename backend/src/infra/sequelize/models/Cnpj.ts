@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize'
 import db from '.'
 
-export class Cnpj extends Model {
+class Cnpj extends Model {
   declare id: number
-  declare cnpj: string
+  declare cnpjNumber: string
   declare companyType: string
   declare createdAt: Date
   declare updatedAt: Date
@@ -15,7 +15,7 @@ Cnpj.init({
     primaryKey: true,
     autoIncrement: true
   },
-  cnpj: { type: DataTypes.STRING, allowNull: false, unique: true },
+  cnpjNumber: { type: DataTypes.STRING, allowNull: false, unique: true, field: 'cnpj' },
   companyType: { type: DataTypes.STRING, allowNull: false },
   createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
@@ -23,3 +23,5 @@ Cnpj.init({
   sequelize: db,
   tableName: 'cnpjs'
 })
+
+export default Cnpj

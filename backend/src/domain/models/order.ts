@@ -1,9 +1,9 @@
-type OrderProvider = {
+export type OrderProvider = {
   id: number
   name: string
 }
 
-type OrderBuyer = {
+export type OrderBuyer = {
   id: number
   name: string
 }

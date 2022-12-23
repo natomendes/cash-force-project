@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize'
-import { Cnpj } from './Cnpj'
+import Cnpj from './Cnpj'
 import db from '.'
 
-export class Buyer extends Model {
+class Buyer extends Model {
   declare id: number
   declare name: string
   declare tradingName: string
@@ -72,5 +72,7 @@ Buyer.init({
   tableName: 'buyers'
 })
 
-Buyer.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Buyer, { foreignKey: 'cnpjId', as: 'cnpj' })
+Buyer.belongsTo(Cnpj, { foreignKey: 'cnpjId' })
+Cnpj.hasOne(Buyer, { foreignKey: 'cnpjId' })
+
+export default Buyer

@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize'
-import { Order } from './Order'
+import Order from './Order'
 import db from '.'
-import { Sponsor } from './Sponsor'
+import Sponsor from './Sponsor'
 
-export class Offer extends Model {
+class Offer extends Model {
   declare id: number
   declare nDup: string
   declare dVenc: string
@@ -47,8 +47,10 @@ Offer.init({
   tableName: 'offers'
 })
 
-Offer.belongsTo(Order, { foreignKey: 'cnpjId', as: 'cnpj' })
-Order.hasOne(Offer, { foreignKey: 'cnpjId', as: 'cnpj' })
+Offer.belongsTo(Order, { foreignKey: 'cnpjId' })
+Order.hasOne(Offer, { foreignKey: 'cnpjId' })
 
-Offer.belongsTo(Sponsor, { foreignKey: 'cnpjId', as: 'cnpj' })
-Sponsor.hasMany(Offer, { foreignKey: 'cnpjId', as: 'cnpj' })
+Offer.belongsTo(Sponsor, { foreignKey: 'cnpjId' })
+Sponsor.hasMany(Offer, { foreignKey: 'cnpjId' })
+
+export default Offer

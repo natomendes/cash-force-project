@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize'
 import db from '.'
 
-export class User extends Model {
+class User extends Model {
   declare id: number
   declare username: string
   declare email: string
@@ -35,3 +35,5 @@ User.init({
   sequelize: db,
   tableName: 'users'
 })
+
+export default User

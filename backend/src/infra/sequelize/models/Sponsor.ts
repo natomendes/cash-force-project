@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize'
-import { Cnpj } from './Cnpj'
+import Cnpj from './Cnpj'
 import db from '.'
 
-export class Sponsor extends Model {
+class Sponsor extends Model {
   declare id: number
   declare name: string
   declare tradingName: string
@@ -76,5 +76,7 @@ Sponsor.init({
   tableName: 'sponsors'
 })
 
-Sponsor.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Sponsor, { foreignKey: 'cnpjId', as: 'cnpj' })
+Sponsor.belongsTo(Cnpj, { foreignKey: 'cnpjId' })
+Cnpj.hasOne(Sponsor, { foreignKey: 'cnpjId' })
+
+export default Sponsor

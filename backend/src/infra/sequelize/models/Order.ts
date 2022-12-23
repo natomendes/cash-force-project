@@ -1,11 +1,12 @@
 import { Model, DataTypes } from 'sequelize'
-import { Cnpj } from './Cnpj'
+import Cnpj from './Cnpj'
 import db from '.'
-import { User } from './User'
-import { Buyer } from './Buyer'
-import { Provider } from './Provider'
+import User from './User'
+import Buyer from './Buyer'
+import Provider from './Provider'
+import { OrderBuyer, OrderProvider } from '@/domain/models/order'
 
-export class Order extends Model {
+class Order extends Model {
   declare id: number
   declare orderNfId: string
   declare orderNumber: string
@@ -29,6 +30,8 @@ export class Order extends Model {
   declare userId: number
   declare buyerId: number
   declare providerId: number
+  declare buyer: OrderBuyer
+  declare provider: OrderProvider
 }
 
 Order.init({
@@ -88,14 +91,16 @@ Order.init({
   tableName: 'orders'
 })
 
-Order.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Order, { foreignKey: 'cnpjId', as: 'cnpj' })
+Order.belongsTo(Cnpj, { foreignKey: 'cnpjId' })
+Cnpj.hasOne(Order, { foreignKey: 'cnpjId' })
 
-Order.belongsTo(User, { foreignKey: 'userId', as: 'user' })
-User.hasMany(Order, { foreignKey: 'userId', as: 'user' })
+Order.belongsTo(User, { foreignKey: 'userId' })
+User.hasMany(Order, { foreignKey: 'userId' })
 
-Order.belongsTo(Buyer, { foreignKey: 'buyerId', as: 'buyer' })
-Buyer.hasMany(Order, { foreignKey: 'buyerId', as: 'buyer' })
+Order.belongsTo(Buyer, { foreignKey: 'buyerId' })
+Buyer.hasMany(Order, { foreignKey: 'buyerId' })
 
-Order.belongsTo(Provider, { foreignKey: 'providerId', as: 'provider' })
-Provider.hasMany(Order, { foreignKey: 'providerId', as: 'provider' })
+Order.belongsTo(Provider, { foreignKey: 'providerId' })
+Provider.hasMany(Order, { foreignKey: 'providerId' })
+
+export default Order
