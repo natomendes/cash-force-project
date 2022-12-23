@@ -43,4 +43,15 @@ describe('Auth Middleware', () => {
     })
     expect(validateSpy).toHaveBeenCalledWith('any_token')
   })
+
+  it('Should return forbidden if token is invalid or expired', async () => {
+    const { sut, validateTokenStub } = makeSut()
+    jest.spyOn(validateTokenStub, 'validate').mockResolvedValueOnce(false)
+    const httpResponse = await sut.handle({
+      headers: {
+        'x-access-token': 'any_token'
+      }
+    })
+    expect(httpResponse).toEqual(forbidden(new AccessDeniedError()))
+  })
 })
