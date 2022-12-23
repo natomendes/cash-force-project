@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize'
 import { Cnpj } from './Cnpj'
 import db from '.'
 
-export class Provider extends Model {
+export class Sponsor extends Model {
   declare id: number
   declare name: string
   declare tradingName: string
@@ -23,7 +23,6 @@ export class Provider extends Model {
   declare bank: string
   declare bankAgency: string
   declare account: string
-  declare documents: string
   declare phoneNumber: string
   declare situation: string
   declare situationDate: string
@@ -33,7 +32,7 @@ export class Provider extends Model {
   declare updatedAt: Date
 }
 
-Provider.init({
+Sponsor.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -58,7 +57,6 @@ Provider.init({
   bank: { type: DataTypes.STRING, defaultValue: null },
   bankAgency: { type: DataTypes.STRING, defaultValue: null },
   account: { type: DataTypes.STRING, defaultValue: null },
-  documents: { type: DataTypes.STRING, defaultValue: null },
   phoneNumber: { type: DataTypes.STRING, defaultValue: null },
   situation: { type: DataTypes.STRING, defaultValue: null },
   situationDate: { type: DataTypes.STRING, defaultValue: null },
@@ -75,8 +73,8 @@ Provider.init({
   }
 }, {
   sequelize: db,
-  tableName: 'providers'
+  tableName: 'sponsors'
 })
 
-Provider.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
-Cnpj.hasOne(Provider, { foreignKey: 'cnpjId', as: 'cnpj' })
+Sponsor.belongsTo(Cnpj, { foreignKey: 'cnpjId', as: 'cnpj' })
+Cnpj.hasOne(Sponsor, { foreignKey: 'cnpjId', as: 'cnpj' })

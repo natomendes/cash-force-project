@@ -32,7 +32,6 @@ User.init({
   updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   cashforceAdm: { type: DataTypes.INTEGER, defaultValue: 0 }
 }, {
-  underscored: true,
   sequelize: db,
   tableName: 'users'
 })

@@ -68,7 +68,6 @@ Buyer.init({
     }
   }
 }, {
-  underscored: true,
   sequelize: db,
   tableName: 'buyers'
 })
