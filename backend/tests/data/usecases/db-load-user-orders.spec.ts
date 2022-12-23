@@ -23,4 +23,11 @@ describe('DbLoadUserOrders Usecase', () => {
     await sut.load('valid_user_id')
     expect(loadByUserIdSpy).toHaveBeenCalledWith('valid_user_id')
   })
+
+  it('Should throw if LoadUserOrdersRepo throws', async () => {
+    const { sut, loadUserOrdersRepoStub } = makeSut()
+    jest.spyOn(loadUserOrdersRepoStub, 'loadByUserId').mockRejectedValueOnce(new Error())
+    const promise = sut.load('valid_user_id')
+    await expect(promise).rejects.toThrow()
+  })
 })
