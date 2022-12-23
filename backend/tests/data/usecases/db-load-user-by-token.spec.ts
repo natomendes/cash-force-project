@@ -62,4 +62,11 @@ describe('DbLoadUserByToken', () => {
     await sut.load('encrypted_token')
     expect(loadByIdSpy).toHaveBeenCalledWith(1)
   })
+
+  it('Should return null if LoadUserById returns null', async () => {
+    const { sut, loadUserByIdRepoStub } = makeSut()
+    jest.spyOn(loadUserByIdRepoStub, 'loadById').mockResolvedValueOnce(null)
+    const user = await sut.load('encrypted_token')
+    expect(user).toBeNull()
+  })
 })
