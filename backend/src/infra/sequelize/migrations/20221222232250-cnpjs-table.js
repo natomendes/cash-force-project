@@ -11,11 +11,12 @@ module.exports = {
       },
       cnpj: {
         type: Sequelize.STRING,
-        defaultValue: null
+        allowNull: false,
+        unique: true
       },
       companyType: {
         type: Sequelize.STRING,
-        defaultValue: null
+        allowNull: false
       },
       createdAt: {
         type: Sequelize.DATE,
