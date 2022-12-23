@@ -1,7 +1,8 @@
 import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
 import { LoadUserOrdersController } from '@/presentation/controllers/load-user-orders-controller'
+import { ok, serverError } from '@/presentation/helpers/http-helpers'
 import { mockLoadUserOrders } from '../../helpers/usecases'
-import { ServerError } from '@/presentation/errors'
+import { mockOrderModelList } from '../../helpers/models'
 
 type SutTypes = {
   sut: LoadUserOrdersController
@@ -35,9 +36,15 @@ describe('LoadUserOrdersController', () => {
       userId: 'valid_user_id'
     }
     const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual({
-      statusCode: 500,
-      body: new ServerError()
-    })
+    expect(httpResponse).toEqual(serverError())
+  })
+
+  it('Should return a list of orders on success', async () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      userId: 'valid_user_id'
+    }
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual(ok(mockOrderModelList()))
   })
 })
