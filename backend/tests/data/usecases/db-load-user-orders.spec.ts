@@ -1,20 +1,10 @@
-import { OrderModel } from '@/domain/models/order'
-import { mockOrderModelList } from '@/tests/helpers/models'
 import { LoadUserOrdersRepo } from '@/data/protocols/load-user-order-repo'
 import { DbLoadUserOrders } from '@/data/usecases/db-load-user-orders'
+import { mockLoadUserOrdersRepo } from '@/tests/helpers/usecases'
 
 type SutTypes = {
   sut: DbLoadUserOrders
   loadUserOrdersRepoStub: LoadUserOrdersRepo
-}
-
-const mockLoadUserOrdersRepo = (): LoadUserOrdersRepo => {
-  class LoadUserOrdersRepoStub implements LoadUserOrdersRepo {
-    async loadByUserId (_userId: string): Promise<OrderModel[]> {
-      return mockOrderModelList()
-    }
-  }
-  return new LoadUserOrdersRepoStub()
 }
 
 const makeSut = (): SutTypes => {
