@@ -14,5 +14,12 @@ describe('OrderMySqlRepository', () => {
       const orders = await sut.loadByUserId('valid_user_id')
       expect(orders).toEqual(dbOrdersMock)
     })
+
+    it('Should throw if Sequelize throws', async () => {
+      const sut = makeSut()
+      jest.spyOn(Order, 'findAll').mockRejectedValueOnce(new Error())
+      const promise = sut.loadByUserId('valid_user_id')
+      await expect(promise).rejects.toThrow()
+    })
   })
 })
