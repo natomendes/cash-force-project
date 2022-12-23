@@ -11,7 +11,8 @@ module.exports = {
       },
       orderNfId: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       orderNumber: {
         type: Sequelize.STRING,
@@ -19,15 +20,18 @@ module.exports = {
       },
       orderPath: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: null,
+        unique: true
       },
       orderFileName: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: null,
+        unique: true
       },
       orderOriginalName: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: null,
+        unique: true
       },
       emissionDate: {
         type: Sequelize.STRING,
