@@ -1,6 +1,7 @@
 import { LoadUserOrders } from '@/domain/usecases/load-user-orders'
 import { LoadUserOrdersController } from '@/presentation/controllers/load-user-orders-controller'
 import { mockLoadUserOrders } from '../../helpers/usecases'
+import { ServerError } from '@/presentation/errors'
 
 type SutTypes = {
   sut: LoadUserOrdersController
@@ -25,5 +26,18 @@ describe('LoadUserOrdersController', () => {
     }
     await sut.handle(httpRequest)
     expect(loadSpy).toHaveBeenCalledWith('valid_user_id')
+  })
+
+  it('Should return server error if LoadUserOrders throws', async () => {
+    const { sut, loadUserOrdersStub } = makeSut()
+    jest.spyOn(loadUserOrdersStub, 'load').mockRejectedValueOnce(new Error())
+    const httpRequest = {
+      userId: 'valid_user_id'
+    }
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual({
+      statusCode: 500,
+      body: new ServerError()
+    })
   })
 })
