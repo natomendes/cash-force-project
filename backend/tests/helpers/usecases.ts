@@ -2,6 +2,7 @@ import { Decrypter, Encrypter, HashComparer, LoadUserByEmailRepo, LoadUserByIdRe
 import { mockOrderModelList, mockUserModel } from '@/tests/helpers'
 import { LoadUserByToken, LoadUserOrders } from '@/domain/usecases'
 import { OrderModel, UserModel } from '@/domain/models'
+import { Authentication, AuthParams } from '@/domain/usecases/authentication'
 
 export const mockLoadUserOrders = (): LoadUserOrders => {
   class LoadUserOrdersStub implements LoadUserOrders {
@@ -73,4 +74,13 @@ export const mockEncrypter = (): Encrypter => {
     }
   }
   return new EncrypterStub()
+}
+
+export const mockAuthentication = (): Authentication => {
+  class AuthenticationStub implements Authentication {
+    async auth (_authParams: AuthParams): Promise<string> {
+      return 'valid_token'
+    }
+  }
+  return new AuthenticationStub()
 }
