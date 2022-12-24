@@ -1,7 +1,6 @@
 import env from '../../main/config/env'
-import { Options } from 'sequelize'
 
-const config: Options = {
+const config = {
   username: env.mySqlUsername,
   password: env.mySqlPassword,
   database: env.mySqlDatabase,
@@ -11,7 +10,8 @@ const config: Options = {
   dialectOptions: {
     timezone: 'Z'
   },
-  logging: false
+  logging: false,
+  seederStorage: 'sequelize'
 }
 
 module.exports = config
