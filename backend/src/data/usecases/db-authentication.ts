@@ -16,8 +16,6 @@ export class DbAuthentication implements Authentication {
     if (!isValid) return null
 
     const { password, ...userWithoutPassword } = user
-    await this.encrypter.encrypt(userWithoutPassword)
-
-    return null
+    return await this.encrypter.encrypt(userWithoutPassword)
   }
 }
