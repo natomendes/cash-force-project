@@ -4,9 +4,9 @@ services:
   database:
     container_name: mysql-database
     image: mysql:8.0.31
-    restart: always
     volumes:
-      - ./data:/var/lib/mysql
+      - ./sql-dump:/docker-entrypoint-initdb.d
+    restart: always
     ports:
       - "3306:3306"
     environment:
