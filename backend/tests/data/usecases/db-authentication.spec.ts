@@ -111,4 +111,13 @@ describe('DbAuthentication', () => {
     })
     await expect(promise).rejects.toThrow(new Error())
   })
+
+  it('Should return the accessToken on success', async () => {
+    const { sut } = makeSut()
+    const accessToken = await sut.auth({
+      email: 'any_email',
+      password: 'any_password'
+    })
+    expect(accessToken).toBe('valid_token')
+  })
 })
