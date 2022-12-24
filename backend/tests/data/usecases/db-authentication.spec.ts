@@ -97,7 +97,7 @@ describe('DbAuthentication', () => {
     expect(encryptSpy).toHaveBeenCalledWith({
       id: 1,
       username: 'any_name',
-      email: 'any_email'
+      email: 'any_email@mail.com'
     })
   })
 

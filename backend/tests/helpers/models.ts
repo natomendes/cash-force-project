@@ -3,7 +3,7 @@ import { OrderModel, UserModel } from '@/domain/models'
 export const mockUserModel = (): UserModel => ({
   id: 1,
   username: 'any_name',
-  email: 'any_email',
+  email: 'any_email@mail.com',
   password: 'hashed_password'
 })
 
