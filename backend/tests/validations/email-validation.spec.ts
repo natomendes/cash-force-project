@@ -1,6 +1,6 @@
 import { EmailValidator } from '@/validations/protocols/email-validator'
 import { InvalidParamError } from '@/presentation/errors'
-import { EmailValidation } from '@/validations'
+import { EmailValidation } from '@/validations/validators'
 import { mockEmailValidator } from '@/tests/helpers'
 
 type SutTypes = {

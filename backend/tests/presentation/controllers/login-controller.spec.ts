@@ -1,9 +1,9 @@
 import { Authentication } from '@/domain/usecases'
 import { mockAuthentication, mockValidation } from '@/tests/helpers'
-import { LoginController } from '@/presentation/controllers/login-controller'
-import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 import { Validation } from '@/presentation/protocols'
 import { MissingParamError } from '@/presentation/errors'
+import { LoginController } from '@/presentation/controllers/login-controller'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 
 const mockRequest = {
   body: {

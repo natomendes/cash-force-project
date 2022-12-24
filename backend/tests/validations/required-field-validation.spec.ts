@@ -1,5 +1,5 @@
 import { MissingParamError } from '@/presentation/errors'
-import { RequiredFieldValidation } from '@/validations'
+import { RequiredFieldValidation } from '@/validations/validators'
 
 type SutTypes = {
   sut: RequiredFieldValidation

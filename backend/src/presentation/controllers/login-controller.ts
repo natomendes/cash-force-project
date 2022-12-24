@@ -1,4 +1,4 @@
-import { Authentication } from '@/domain/usecases/authentication'
+import { Authentication } from '@/domain/usecases'
 import { Controller, HttpRequest, HttpResponse, Validation } from '@/presentation/protocols'
 import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 
