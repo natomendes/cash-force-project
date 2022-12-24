@@ -44,5 +44,12 @@ describe('UserMySqlRepository', () => {
       const user = await sut.loadByEmail('any_email@mail.com')
       expect(user).toBeNull()
     })
+
+    it('Should throw if Sequelize throws', async () => {
+      const sut = makeSut()
+      jest.spyOn(User, 'findOne').mockRejectedValueOnce(new Error())
+      const promise = sut.loadByEmail('any_email@mail.com')
+      await expect(promise).rejects.toThrow()
+    })
   })
 })
