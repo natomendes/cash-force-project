@@ -1,5 +1,6 @@
 import { MissingParamError } from '@/presentation/errors'
 import { RequiredFieldValidation } from '@/validations'
+
 type SutTypes = {
   sut: RequiredFieldValidation
 }
@@ -18,9 +19,9 @@ describe('Required Field Validation', () => {
     expect(error).toEqual(new MissingParamError('any_field'))
   })
 
-  it('Should return null if validation succeeds', () => {
+  it('Should return falsy if validation succeeds', () => {
     const { sut } = makeSut()
     const error = sut.validate({ any_field: 'any_value' })
-    expect(error).toBe(false)
+    expect(error).toBeFalsy()
   })
 })
