@@ -18,4 +18,15 @@ describe('POST /login', () => {
       })
       .expect(200)
   })
+
+  it('Should return 401 on login', async () => {
+    jest.spyOn(User, 'findOne').mockResolvedValueOnce(null)
+    await request(app)
+      .post('/login')
+      .send({
+        email: 'no_user@mail.com',
+        password: '123456'
+      })
+      .expect(401)
+  })
 })
