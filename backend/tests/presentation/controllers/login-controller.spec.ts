@@ -1,8 +1,9 @@
 import { Authentication } from '@/domain/usecases'
 import { mockAuthentication, mockValidation } from '@/tests/helpers'
 import { LoginController } from '@/presentation/controllers/login-controller'
-import { serverError, unauthorized } from '@/presentation/helpers/http-helpers'
+import { badRequest, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 import { Validation } from '@/presentation/protocols'
+import { MissingParamError } from '@/presentation/errors'
 
 const mockRequest = {
   body: {
@@ -34,6 +35,13 @@ describe('LoginController', () => {
     const validateSpy = jest.spyOn(validationStub, 'validate')
     await sut.handle(mockRequest)
     expect(validateSpy).toHaveBeenCalledWith(mockRequest.body)
+  })
+
+  it('Should return bad request if Validation returns an error', async () => {
+    const { sut, validationStub } = makeSut()
+    jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new MissingParamError('any_field'))
+    const httpResponse = await sut.handle(mockRequest)
+    expect(httpResponse).toEqual(badRequest(new MissingParamError('any_field')))
   })
 
   it('Should call Authentication with correct values', async () => {
