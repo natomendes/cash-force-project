@@ -1,7 +1,7 @@
 import { Authentication } from '@/domain/usecases'
 import { mockAuthentication, mockValidation } from '@/tests/helpers'
 import { LoginController } from '@/presentation/controllers/login-controller'
-import { badRequest, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 import { Validation } from '@/presentation/protocols'
 import { MissingParamError } from '@/presentation/errors'
 
@@ -63,5 +63,11 @@ describe('LoginController', () => {
     jest.spyOn(authenticationStub, 'auth').mockRejectedValueOnce(new Error())
     const httpResponse = await sut.handle(mockRequest)
     expect(httpResponse).toEqual(serverError())
+  })
+
+  it('Should return ok and the access token on success', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(mockRequest)
+    expect(httpResponse).toEqual(ok({ accessToken: 'valid_token' }))
   })
 })
