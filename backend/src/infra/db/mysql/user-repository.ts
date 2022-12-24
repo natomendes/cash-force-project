@@ -11,11 +11,7 @@ export class UserMySqlRepository implements LoadUserByIdRepo, LoadUserByEmailRep
   }
 
   async loadByEmail (userEmail: string): Promise<UserModel> {
-    const user = await User.findOne({
-      where: {
-        email: userEmail
-      }
-    })
+    const user = await User.findOne({ where: { email: userEmail } })
     if (!user) return null
 
     const { id, username, email, password } = user
