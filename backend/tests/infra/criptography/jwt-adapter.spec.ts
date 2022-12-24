@@ -9,7 +9,7 @@ jest.mock('jsonwebtoken', () => ({
     return 'valid_token'
   },
   verify (): jwt.JwtPayload {
-    return { user: mockUserModel() }
+    return { id: mockUserModel().id }
   }
 }))
 

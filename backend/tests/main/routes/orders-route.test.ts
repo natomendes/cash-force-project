@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 
 jest.mock('jsonwebtoken', () => ({
   verify (): jwt.JwtPayload {
-    return { user: mockUserModel() }
+    return { id: mockUserModel().id }
   }
 }))
 
