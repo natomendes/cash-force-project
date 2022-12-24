@@ -1,4 +1,4 @@
-import { Decrypter, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
+import { Decrypter, LoadUserByEmailRepo, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
 import { mockOrderModelList, mockUserModel } from '@/tests/helpers'
 import { LoadUserByToken, LoadUserOrders } from '@/domain/usecases'
 import { OrderModel, UserModel } from '@/domain/models'
@@ -32,11 +32,20 @@ export const mockDecrypter = (): Decrypter => {
 
 export const mockLoadUserByIdRepo = (): LoadUserByIdRepo => {
   class LoadUserByIdRepoStub implements LoadUserByIdRepo {
-    async loadById (_suserId: number): Promise<UserModel> {
+    async loadById (_userId: number): Promise<UserModel> {
       return mockUserModel()
     }
   }
   return new LoadUserByIdRepoStub()
+}
+
+export const mockLoadUserByEmailRepo = (): LoadUserByEmailRepo => {
+  class LoadUserByEmailRepoStub implements LoadUserByEmailRepo {
+    async loadByEmail (_email: string): Promise<UserModel> {
+      return mockUserModel()
+    }
+  }
+  return new LoadUserByEmailRepoStub()
 }
 
 export const mockLoadUserByToken = (): LoadUserByToken => {
