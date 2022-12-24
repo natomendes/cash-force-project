@@ -6,7 +6,7 @@ export class UserMySqlRepository implements LoadUserByIdRepo {
     const user = await User.findByPk(userId)
     if (!user) return null
 
-    const { id, username, email } = user
-    return { id, username, email }
+    const { id, username, email, password } = user
+    return { id, username, email, password }
   }
 }

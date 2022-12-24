@@ -1,4 +1,4 @@
-import env from '@/main/config/env'
+import env from '../../main/config/env'
 import { Options } from 'sequelize'
 
 const config: Options = {
