@@ -1,4 +1,4 @@
-import { Decrypter, HashComparer, LoadUserByEmailRepo, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
+import { Decrypter, Encrypter, HashComparer, LoadUserByEmailRepo, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
 import { mockOrderModelList, mockUserModel } from '@/tests/helpers'
 import { LoadUserByToken, LoadUserOrders } from '@/domain/usecases'
 import { OrderModel, UserModel } from '@/domain/models'
@@ -64,4 +64,13 @@ export const mockHashComparer = (): HashComparer => {
     }
   }
   return new HashComparerStub()
+}
+
+export const mockEncrypter = (): Encrypter => {
+  class EncrypterStub implements Encrypter {
+    async encrypt (_user: UserModel): Promise<string> {
+      return 'valid_token'
+    }
+  }
+  return new EncrypterStub()
 }
