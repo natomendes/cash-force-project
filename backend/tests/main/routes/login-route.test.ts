@@ -7,7 +7,7 @@ jest.mock('bcrypt', () => ({
   compare: jest.fn(async (): Promise<boolean> => await new Promise(resolve => resolve(true)))
 }))
 
-describe('POST /loin', () => {
+describe('POST /login', () => {
   it('Should return 200 on login', async () => {
     jest.spyOn(User, 'findOne').mockResolvedValueOnce(mockUserModel() as any)
     await request(app)
