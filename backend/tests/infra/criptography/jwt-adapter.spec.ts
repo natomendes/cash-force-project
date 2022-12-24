@@ -27,6 +27,14 @@ describe('Jwt Adapter', () => {
 
       expect(signSpy).toHaveBeenCalledWith(userWithoutPassword, secret)
     })
+
+    it('Should return a token on sign success', async () => {
+      const sut = makeSut()
+
+      const accessToken = await sut.encrypt(userWithoutPassword)
+
+      expect(accessToken).toBe('valid_token')
+    })
   })
 
   describe('verify()', () => {
