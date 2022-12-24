@@ -1,6 +1,6 @@
 import { Authentication } from '@/domain/usecases/authentication'
 import { Controller, HttpRequest, HttpResponse, Validation } from '@/presentation/protocols'
-import { badRequest, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http-helpers'
 
 export class LoginController implements Controller {
   constructor (
@@ -17,6 +17,8 @@ export class LoginController implements Controller {
 
       const accessToken = await this.authentication.auth({ email, password })
       if (!accessToken) return unauthorized()
+
+      return ok({ accessToken })
     } catch (error) {
       return serverError()
     }
