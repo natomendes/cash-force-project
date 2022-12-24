@@ -1,8 +1,13 @@
-import { Decrypter } from '@/data/protocols'
+import { Decrypter, Encrypter, UserModel } from '@/data/protocols'
 import jwt from 'jsonwebtoken'
 
-export class JwtAdapter implements Decrypter {
+export class JwtAdapter implements Encrypter, Decrypter {
   constructor (private readonly secret: string) {}
+
+  async encrypt (user: UserModel): Promise<string> {
+    jwt.sign(user, this.secret)
+    return null
+  }
 
   async decrypt (token: string): Promise<number> {
     try {
