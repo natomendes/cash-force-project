@@ -1,4 +1,4 @@
-import { Decrypter, LoadUserByEmailRepo, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
+import { Decrypter, HashComparer, LoadUserByEmailRepo, LoadUserByIdRepo, LoadUserOrdersRepo } from '@/data/protocols'
 import { mockOrderModelList, mockUserModel } from '@/tests/helpers'
 import { LoadUserByToken, LoadUserOrders } from '@/domain/usecases'
 import { OrderModel, UserModel } from '@/domain/models'
@@ -55,4 +55,13 @@ export const mockLoadUserByToken = (): LoadUserByToken => {
     }
   }
   return new LoadUserByTokenStub()
+}
+
+export const mockHashComparer = (): HashComparer => {
+  class HashComparerStub implements HashComparer {
+    async compare (_value: string, _hash: string): Promise<boolean> {
+      return true
+    }
+  }
+  return new HashComparerStub()
 }
