@@ -37,5 +37,12 @@ describe('UserMySqlRepository', () => {
       const user = await sut.loadByEmail('any_email@mail.com')
       expect(user).toEqual(mockUserModel())
     })
+
+    it('Should return null if no user is found', async () => {
+      const sut = makeSut()
+      jest.spyOn(User, 'findOne').mockResolvedValueOnce(null)
+      const user = await sut.loadByEmail('any_email@mail.com')
+      expect(user).toBeNull()
+    })
   })
 })
