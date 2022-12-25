@@ -17,6 +17,7 @@ export class AuthMiddleware implements Controller {
 
       return forbidden(new AccessDeniedError())
     } catch (error) {
+      console.log(error)
       return serverError()
     }
   }

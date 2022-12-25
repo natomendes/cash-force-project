@@ -11,6 +11,7 @@ export class LoadUserOrdersController implements Controller {
 
       return ok(orders)
     } catch (error) {
+      console.log(error)
       return serverError()
     }
   }

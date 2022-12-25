@@ -12,3 +12,17 @@ services:
     environment:
       - MYSQL_DATABASE=cashforce_v3
       - MYSQL_ROOT_PASSWORD=123456
+  backend:
+    container_name: node-api
+    image: node:18
+    working_dir: /api
+    restart: always
+    command: bash -c "npm install --omit=dev && npm start"
+    volumes:
+      - ./backend/dist:/api/dist
+      - ./backend/package.json:/api/package.json
+    ports:
+      - "5050:5050"
+      - "9222:9222"
+    environment:
+      - MYSQL_DBHOST=database
