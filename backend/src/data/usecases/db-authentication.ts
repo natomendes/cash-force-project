@@ -1,5 +1,5 @@
 import { Authentication, AuthParams } from '@/domain/usecases/authentication'
-import { Encrypter, HashComparer, LoadUserByEmailRepo } from '@/data/protocols'
+import { Encrypter, HashComparer, LoadUserByEmailRepo, UserModel } from '@/data/protocols'
 
 export class DbAuthentication implements Authentication {
   constructor (
@@ -8,7 +8,7 @@ export class DbAuthentication implements Authentication {
     private readonly encrypter: Encrypter
   ) {}
 
-  async auth (authParam: AuthParams): Promise<string> {
+  async auth (authParam: AuthParams): Promise<UserModel> {
     const user = await this.loadUserByEmailRepo.loadByEmail(authParam.email)
     if (!user) return null
 
@@ -16,6 +16,10 @@ export class DbAuthentication implements Authentication {
     if (!isValid) return null
 
     const { password, ...userWithoutPassword } = user
-    return await this.encrypter.encrypt(userWithoutPassword)
+    const accessToken = await this.encrypter.encrypt(userWithoutPassword)
+    return {
+      ...userWithoutPassword,
+      accessToken
+    }
   }
 }

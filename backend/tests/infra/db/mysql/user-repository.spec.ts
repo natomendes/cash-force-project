@@ -9,10 +9,11 @@ const makeSut = (): UserMySqlRepository => {
 describe('UserMySqlRepository', () => {
   describe('loadById()', () => {
     it('Should return a user on success', async () => {
+      const { accessToken, ...userWithoutToken } = mockUserModel()
       const sut = makeSut()
-      jest.spyOn(User, 'findByPk').mockResolvedValueOnce(mockUserModel() as any)
+      jest.spyOn(User, 'findByPk').mockResolvedValueOnce(userWithoutToken as any)
       const user = await sut.loadById(1)
-      expect(user).toEqual(mockUserModel())
+      expect(user).toEqual(userWithoutToken)
     })
 
     it('Should return null if no user is found', async () => {
@@ -32,10 +33,11 @@ describe('UserMySqlRepository', () => {
 
   describe('loadByEmail()', () => {
     it('Should return a user on success', async () => {
+      const { accessToken, ...userWithoutToken } = mockUserModel()
       const sut = makeSut()
-      jest.spyOn(User, 'findOne').mockResolvedValueOnce(mockUserModel() as any)
+      jest.spyOn(User, 'findOne').mockResolvedValueOnce(userWithoutToken as any)
       const user = await sut.loadByEmail('any_email@mail.com')
-      expect(user).toEqual(mockUserModel())
+      expect(user).toEqual(userWithoutToken)
     })
 
     it('Should return null if no user is found', async () => {

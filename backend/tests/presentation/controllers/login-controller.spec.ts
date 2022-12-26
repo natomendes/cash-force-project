@@ -1,5 +1,5 @@
 import { Authentication } from '@/domain/usecases'
-import { mockAuthentication, mockValidation } from '@/tests/helpers'
+import { mockAuthentication, mockUserModel, mockValidation } from '@/tests/helpers'
 import { Validation } from '@/presentation/protocols'
 import { MissingParamError } from '@/presentation/errors'
 import { LoginController } from '@/presentation/controllers/login-controller'
@@ -66,8 +66,9 @@ describe('LoginController', () => {
   })
 
   it('Should return ok and the access token on success', async () => {
+    const { password, ...userWithoutPassword } = mockUserModel()
     const { sut } = makeSut()
     const httpResponse = await sut.handle(mockRequest)
-    expect(httpResponse).toEqual(ok({ accessToken: 'valid_token' }))
+    expect(httpResponse).toEqual(ok({ user: userWithoutPassword }))
   })
 })

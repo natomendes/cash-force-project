@@ -43,7 +43,8 @@ export const mockLoadUserByIdRepo = (): LoadUserByIdRepo => {
 export const mockLoadUserByEmailRepo = (): LoadUserByEmailRepo => {
   class LoadUserByEmailRepoStub implements LoadUserByEmailRepo {
     async loadByEmail (_email: string): Promise<UserModel> {
-      return mockUserModel()
+      const { accessToken, ...user } = mockUserModel()
+      return user
     }
   }
   return new LoadUserByEmailRepoStub()
@@ -78,8 +79,9 @@ export const mockEncrypter = (): Encrypter => {
 
 export const mockAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
-    async auth (_authParams: AuthParams): Promise<string> {
-      return 'valid_token'
+    async auth (_authParams: AuthParams): Promise<UserModel> {
+      const { password, ...userWithoutPassword } = mockUserModel()
+      return userWithoutPassword
     }
   }
   return new AuthenticationStub()

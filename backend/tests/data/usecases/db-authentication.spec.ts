@@ -1,5 +1,5 @@
 import { Encrypter, HashComparer, LoadUserByEmailRepo } from '@/data/protocols'
-import { mockEncrypter, mockHashComparer, mockLoadUserByEmailRepo } from '@/tests/helpers'
+import { mockEncrypter, mockHashComparer, mockLoadUserByEmailRepo, mockUserModel } from '@/tests/helpers'
 import { DbAuthentication } from '@/data/usecases'
 
 type SutTypes = {
@@ -112,12 +112,13 @@ describe('DbAuthentication', () => {
     await expect(promise).rejects.toThrow(new Error())
   })
 
-  it('Should return the accessToken on success', async () => {
+  it('Should return a user on success', async () => {
+    const { password, ...userWithoutPassword } = mockUserModel()
     const { sut } = makeSut()
-    const accessToken = await sut.auth({
+    const user = await sut.auth({
       email: 'any_email',
       password: 'any_password'
     })
-    expect(accessToken).toBe('valid_token')
+    expect(user).toEqual(userWithoutPassword)
   })
 })

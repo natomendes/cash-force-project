@@ -4,7 +4,8 @@ export const mockUserModel = (): UserModel => ({
   id: 1,
   username: 'any_name',
   email: 'any_email@mail.com',
-  password: 'hashed_password'
+  password: 'hashed_password',
+  accessToken: 'valid_token'
 })
 
 export const mockOrderModelList = (): OrderModel[] => [{
