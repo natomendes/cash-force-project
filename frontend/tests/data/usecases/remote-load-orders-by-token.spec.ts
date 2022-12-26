@@ -4,6 +4,7 @@ import { HttpGetClientSpy } from '@/tests/data/mocks'
 import { faker } from '@faker-js/faker'
 import { HttpStatusCode } from '@/data/protocols/http'
 import { UnexpectedError } from '@/domain/errors'
+import { mockOrderList } from '../../domain/mocks/mock-order'
 
 interface SutTypes {
   sut: RemoteLoadOrdersByToken
@@ -31,12 +32,23 @@ describe('RemoteLoadOrdersByToken', () => {
     })
   })
 
-  it('Should throw UnexpectedError if HttpPostClient returns server error', async () => {
+  it('Should throw UnexpectedError if HttpGetClient returns server error', async () => {
     const { sut, httpGetClientSpy } = makeSut()
     httpGetClientSpy.response = {
       statusCode: HttpStatusCode.serverError
     }
     const promise = sut.loadAll(faker.datatype.uuid())
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('Should return a list of orders if HttpGetClient returns ok', async () => {
+    const { sut, httpGetClientSpy } = makeSut()
+    const httpResult = mockOrderList()
+    httpGetClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: httpResult
+    }
+    const orders = await sut.loadAll(faker.datatype.uuid())
+    expect(orders).toEqual(httpResult)
   })
 })
