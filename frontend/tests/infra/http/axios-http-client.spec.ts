@@ -46,5 +46,15 @@ describe('AxiosHttpClient', () => {
       await sut.get(getRequest)
       expect(getSpy).toHaveBeenCalledWith(getRequest.url, { headers: getRequest.headers })
     })
+
+    it('Should return the correct statusCode and body on success', async () => {
+      jest.spyOn(axios, 'get').mockResolvedValueOnce(mockedAxiosPostResult)
+      const sut = makeSut()
+      const httpResponse = await sut.get(mockGetResquest())
+      expect(httpResponse).toEqual({
+        statusCode: mockedAxiosPostResult.status,
+        body: mockedAxiosPostResult.data
+      })
+    })
   })
 })
