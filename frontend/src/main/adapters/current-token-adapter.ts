@@ -1,9 +1,10 @@
+import { AccountModel } from '@/domain/models'
 import { makeLocalStorageAdapter } from '@/main/factories/usecases/cache'
 
-export const setCurrentTokenAdapter = (accessToken: string): void => {
-  makeLocalStorageAdapter().set('accessToken', accessToken)
+export const setCurrentAccountAdapter = (account: AccountModel): void => {
+  makeLocalStorageAdapter().set('account', account)
 }
 
-export const getCurrentTokenAdapter = (): string => {
-  return makeLocalStorageAdapter().get('accessToken')
+export const getCurrentAccountAdapter = (): AccountModel => {
+  return makeLocalStorageAdapter().get('account')
 }

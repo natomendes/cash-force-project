@@ -1,6 +1,6 @@
 import { makeLoginPage } from '@/main/factories/pages/login'
 import { ApiContext } from '@/presentation/contexts'
-import { getCurrentTokenAdapter, setCurrentTokenAdapter } from '@/main/adapters/current-token-adapter'
+import { getCurrentAccountAdapter, setCurrentAccountAdapter } from '@/main/adapters/current-token-adapter'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react'
 import { Dashboard } from '@/presentation/pages'
@@ -10,8 +10,8 @@ const Router: React.FC = () => {
   return (
     <ApiContext.Provider
       value={{
-        saveAccessToken: setCurrentTokenAdapter,
-        getAccessToken: getCurrentTokenAdapter
+        saveCurrentAccount: setCurrentAccountAdapter,
+        getCurrentAccount: getCurrentAccountAdapter
       }}
     >
       <BrowserRouter>

@@ -1,6 +1,7 @@
 import { LocalStorageAdapter } from '@/infra/cache'
-import { setCurrentTokenAdapter, getCurrentTokenAdapter } from '@/main/adapters/current-token-adapter'
+import { setCurrentAccountAdapter, getCurrentAccountAdapter } from '@/main/adapters/current-token-adapter'
 import 'jest-localstorage-mock'
+import { mockAccountModel } from '../../domain/mocks'
 
 describe('CurrentAccessTokenAdapter', () => {
   beforeEach(() => {
@@ -8,20 +9,22 @@ describe('CurrentAccessTokenAdapter', () => {
   })
 
   it('Should call LocalStorageAdapter.set with correct values', () => {
+    const account = mockAccountModel()
     const setSpy = jest.spyOn(LocalStorageAdapter.prototype, 'set')
-    setCurrentTokenAdapter('any_token')
-    expect(setSpy).toHaveBeenCalledWith('accessToken', 'any_token')
+    setCurrentAccountAdapter(account)
+    expect(setSpy).toHaveBeenCalledWith('account', account)
   })
 
   it('Should call LocalStorageAdapter.get with correct value', () => {
-    const getSpy = jest.spyOn(LocalStorageAdapter.prototype, 'get').mockReturnValueOnce('any_token')
-    getCurrentTokenAdapter()
-    expect(getSpy).toHaveBeenCalledWith('accessToken')
+    const getSpy = jest.spyOn(LocalStorageAdapter.prototype, 'get')
+    getCurrentAccountAdapter()
+    expect(getSpy).toHaveBeenCalledWith('account')
   })
 
-  it('Should return an accessToken on LocalStorageAdapter.get success', () => {
-    jest.spyOn(LocalStorageAdapter.prototype, 'get').mockReturnValueOnce('any_token')
-    const accessToken = getCurrentTokenAdapter()
-    expect(accessToken).toBe('any_token')
+  it('Should return an account on LocalStorageAdapter.get success', () => {
+    const account = mockAccountModel()
+    jest.spyOn(LocalStorageAdapter.prototype, 'get').mockReturnValueOnce(account)
+    const accessToken = getCurrentAccountAdapter()
+    expect(accessToken).toBe(account)
   })
 })

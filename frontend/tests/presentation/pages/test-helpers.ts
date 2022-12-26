@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { RenderResult, fireEvent } from '@testing-library/react'
 import { AuthenticationSpy } from '@/tests/presentation/mocks'
+import { AccountModel } from '@/domain/models'
 
 export const populateInputField = (sut: RenderResult, fieldName: string, value = faker.random.word()): void => {
   const emailInput = sut.getByTestId(fieldName)
@@ -39,9 +40,9 @@ export const checkElementTextContent = (sut: RenderResult, fieldName: string, te
 }
 
 export const awaitSubmitAsyncProcess = (
-  saveAccessTokenMock: (accessToken: string) => void,
+  saveCurrentAccountMock: (account: AccountModel) => void,
   authenticationSpy: AuthenticationSpy
 ): void => {
-  expect(saveAccessTokenMock).toHaveBeenCalledWith(authenticationSpy.account.accessToken)
+  expect(saveCurrentAccountMock).toHaveBeenCalledWith(authenticationSpy.account)
   expect(window.location.pathname).toBe('/')
 }

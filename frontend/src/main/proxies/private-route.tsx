@@ -7,9 +7,9 @@ type Props = {
 }
 
 const PrivateRoute = ({ children }: Props): JSX.Element => {
-  const { getAccessToken } = useContext(ApiContext)
-  const accessToken = getAccessToken()
-  return accessToken ? children : <Navigate to="/login" />
+  const { getCurrentAccount } = useContext(ApiContext)
+  const account = getCurrentAccount()
+  return account?.accessToken ? children : <Navigate to="/login" />
 }
 
 export default PrivateRoute

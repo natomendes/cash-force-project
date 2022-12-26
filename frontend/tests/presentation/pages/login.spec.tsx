@@ -7,12 +7,13 @@ import { cleanup, fireEvent, RenderResult, waitFor } from '@testing-library/reac
 import * as Helper from '@/tests/presentation/pages/test-helpers'
 import { InvalidCredentialsError } from '@/domain/errors'
 import { renderWithRouter } from '@/tests/presentation/pages/renderWithRouter'
+import { AccountModel } from '@/domain/models'
 
 type SutTypes = {
   sut: RenderResult
   validationStub: ValidationStub
   authenticationSpy: AuthenticationSpy
-  saveAccessTokenMock: (accessToken: string) => void
+  saveCurrentAccountMock: (account: AccountModel) => void
 }
 
 type SutParams = {
@@ -23,9 +24,9 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
   validationStub.errorMessage = params?.validationError
-  const saveAccessTokenMock = jest.fn()
+  const saveCurrentAccountMock = jest.fn()
   const sut = renderWithRouter(
-    <ApiContext.Provider value={{ saveAccessToken: saveAccessTokenMock }}>
+    <ApiContext.Provider value={{ saveCurrentAccount: saveCurrentAccountMock }}>
       <Login
         validation={validationStub}
         authentication={authenticationSpy}
@@ -36,7 +37,7 @@ const makeSut = (params?: SutParams): SutTypes => {
     sut,
     validationStub,
     authenticationSpy,
-    saveAccessTokenMock
+    saveCurrentAccountMock
   }
 }
 
@@ -123,16 +124,16 @@ describe('Login Page', () => {
     })
 
     it('Should show spinner on submit', async () => {
-      const { sut, saveAccessTokenMock, authenticationSpy } = makeSut()
+      const { sut, saveCurrentAccountMock, authenticationSpy } = makeSut()
       Helper.simulateLoginSubmit(sut)
       await waitFor(() => {
         Helper.checkElementExists(sut, 'spinner')
-        Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
+        Helper.awaitSubmitAsyncProcess(saveCurrentAccountMock, authenticationSpy)
       })
     })
 
     it('Should call Authentication with correct values', async () => {
-      const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
+      const { sut, authenticationSpy, saveCurrentAccountMock } = makeSut()
       const email = faker.internet.email()
       const password = faker.internet.password()
       Helper.simulateLoginSubmit(sut, email, password)
@@ -141,16 +142,16 @@ describe('Login Page', () => {
           email,
           password
         })
-        Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
+        Helper.awaitSubmitAsyncProcess(saveCurrentAccountMock, authenticationSpy)
       })
     })
 
     it('Should call Authentication only once', async () => {
-      const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
+      const { sut, authenticationSpy, saveCurrentAccountMock } = makeSut()
       Helper.simulateLoginSubmit(sut)
       Helper.simulateLoginSubmit(sut)
       await waitFor(() => {
-        Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
+        Helper.awaitSubmitAsyncProcess(saveCurrentAccountMock, authenticationSpy)
       })
       expect(authenticationSpy.callsCount).toBe(1)
     })
@@ -176,18 +177,18 @@ describe('Login Page', () => {
     })
 
     it('Should call SaveAccessToken on success', async () => {
-      const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
+      const { sut, authenticationSpy, saveCurrentAccountMock } = makeSut()
       Helper.simulateLoginSubmit(sut)
       await waitFor(async () => {
-        Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
+        Helper.awaitSubmitAsyncProcess(saveCurrentAccountMock, authenticationSpy)
       })
     })
 
     it('Should go to main page on success', async () => {
-      const { sut, saveAccessTokenMock, authenticationSpy } = makeSut()
+      const { sut, saveCurrentAccountMock, authenticationSpy } = makeSut()
       Helper.simulateLoginSubmit(sut)
       await waitFor(() => {
-        Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
+        Helper.awaitSubmitAsyncProcess(saveCurrentAccountMock, authenticationSpy)
       })
     })
   })

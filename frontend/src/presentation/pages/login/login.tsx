@@ -15,7 +15,7 @@ type Props = {
 
 const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const navigate = useNavigate()
-  const { saveAccessToken } = useContext(ApiContext)
+  const { saveCurrentAccount } = useContext(ApiContext)
   const [state, setState] = useState(initialState)
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     try {
       if (!state.isLoading && !state.isFormInvalid) {
         setState({ ...state, isLoading: true })
-        const { accessToken } = await authentication.auth({ email: state.email, password: state.password })
-        saveAccessToken(accessToken)
+        const account = await authentication.auth({ email: state.email, password: state.password })
+        saveCurrentAccount(account)
         navigate('/', { replace: true })
       }
     } catch (error) {

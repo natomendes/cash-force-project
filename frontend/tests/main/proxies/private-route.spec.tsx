@@ -5,15 +5,16 @@ import { Route, Routes } from 'react-router-dom'
 import { RenderResult } from '@testing-library/react'
 import 'jest-localstorage-mock'
 import React from 'react'
+import { mockAccountModel } from '../../domain/mocks'
 
 describe('PrivateRoute', () => {
   beforeEach(() => {
     localStorage.clear()
   })
 
-  const makeSut = (accessToken = 'any_token'): RenderResult => {
+  const makeSut = (account = mockAccountModel()): RenderResult => {
     return renderWithRouter(
-      <ApiContext.Provider value={{ getAccessToken: () => accessToken }} >
+      <ApiContext.Provider value={{ getCurrentAccount: () => account }} >
         <Routes>
           <Route path="/" element={
             <PrivateRoute>

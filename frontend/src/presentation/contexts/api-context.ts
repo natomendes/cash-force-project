@@ -1,8 +1,9 @@
+import { AccountModel } from '@/domain/models'
 import { createContext } from 'react'
 
 type Props = {
-  saveAccessToken?: (accessToken: string) => void
-  getAccessToken?: () => string
+  saveCurrentAccount?: (account: AccountModel) => void
+  getCurrentAccount?: () => AccountModel
 }
 
 export default createContext<Props>(null)
