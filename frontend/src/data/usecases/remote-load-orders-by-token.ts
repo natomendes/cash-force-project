@@ -17,8 +17,8 @@ export class RemoteLoadOrdersByToken implements LoadOrdersByToken {
       }
     })
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.serverError: throw new UnexpectedError()
-      default: return null
+      case HttpStatusCode.ok: return httpResponse.body
+      default: throw new UnexpectedError()
     }
   }
 }
