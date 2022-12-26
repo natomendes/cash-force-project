@@ -43,7 +43,7 @@ export const mockGetResquest = (): HttpGetParams => ({
   }
 })
 
-export const mockedAxiosPostResult = {
+export const mockedAxiosResult = {
   data: faker.random.word(),
   status: faker.datatype.number()
 }
