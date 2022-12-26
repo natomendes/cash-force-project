@@ -13,7 +13,7 @@ const Router: React.FC = () => {
     >
       <BrowserRouter>
         <Routes>
-            <Route path='/login' element={makeLoginPage({})} />
+          <Route path='/login' element={makeLoginPage({})} />
         </Routes>
       </BrowserRouter>
     </ApiContext.Provider>
