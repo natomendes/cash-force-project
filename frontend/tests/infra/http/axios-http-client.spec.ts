@@ -1,5 +1,5 @@
 import { AxiosHttpClient } from '@/infra/http/axios-http-client'
-import { mockedAxiosPostResult, mockPostResquest } from '@/tests/data/mocks'
+import { mockedAxiosPostResult, mockGetResquest, mockPostResquest } from '@/tests/data/mocks'
 import axios from 'axios'
 
 const makeSut = (): AxiosHttpClient => {
@@ -36,6 +36,15 @@ describe('AxiosHttpClient', () => {
         statusCode: mockedAxiosPostResult.status,
         body: mockedAxiosPostResult.data
       })
+    })
+  })
+  describe('GetClient', () => {
+    it('Should call axios with correct values', async () => {
+      const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce(mockedAxiosPostResult)
+      const getRequest = mockGetResquest()
+      const sut = makeSut()
+      await sut.get(getRequest)
+      expect(getSpy).toHaveBeenCalledWith(getRequest.url, { headers: getRequest.headers })
     })
   })
 })
