@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { HttpPostClient, HttpPostParams, HttpResponse, HttpStatusCode } from '@/data/protocols/http'
+import { HttpGetClient, HttpGetParams, HttpPostClient, HttpPostParams, HttpResponse, HttpStatusCode } from '@/data/protocols/http'
 
 export class HttpPostClientSpy<R> implements HttpPostClient<R> {
   url?: string
@@ -16,9 +16,31 @@ export class HttpPostClientSpy<R> implements HttpPostClient<R> {
   }
 }
 
+export class HttpGetClientSpy<R> implements HttpGetClient<R> {
+  url?: string
+  headers?: any
+  response: HttpResponse<R> = {
+    statusCode: HttpStatusCode.ok
+  }
+
+  async get ({ url, headers }: HttpGetParams): Promise<HttpResponse<R>> {
+    this.url = url
+    this.headers = headers
+
+    return this.response
+  }
+}
+
 export const mockPostResquest = (): HttpPostParams => ({
   url: faker.internet.url(),
   body: faker.random.word()
+})
+
+export const mockGetResquest = (): HttpGetParams => ({
+  url: faker.internet.url(),
+  headers: {
+    'x-access-token': faker.datatype.uuid()
+  }
 })
 
 export const mockedAxiosPostResult = {
