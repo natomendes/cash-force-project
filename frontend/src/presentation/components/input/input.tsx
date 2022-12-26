@@ -20,7 +20,7 @@ const Input: React.FC<Props> = (props: Props) => {
         onChange={e => { setState({ ...state, [e.target.name]: e.target.value }) }}
         data-testid={props.name}
       />
-      <label onClick={() => { inputRef.current.focus() } }>
+      <label onClick={() => { inputRef.current.focus() } } data-testid={`${props.name}-label`}>
         {props.placeholder}
       </label>
       <span

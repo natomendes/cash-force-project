@@ -1,18 +1,14 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { makeLoginPage } from '@/main/factories/pages/login'
 import { ApiContext } from '@/presentation/contexts'
-import { makeLocalStorageAdapter } from '@/main/factories/usecases/cache'
-
-const setAccessTokenAdapter = (accessToken: string): void => {
-  makeLocalStorageAdapter().set('accessToken', accessToken)
-}
+import { setCurrentTokenAdapter } from '@/main/adapters/current-token-adapter'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React from 'react'
 
 const Router: React.FC = () => {
   return (
     <ApiContext.Provider
       value={{
-        saveAccessToken: setAccessTokenAdapter
+        saveAccessToken: setCurrentTokenAdapter
       }}
     >
       <BrowserRouter>

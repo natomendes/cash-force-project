@@ -89,6 +89,14 @@ describe('Login Page', () => {
       Helper.checkFieldStatus(sut, 'email', validationStub.errorMessage)
     })
 
+    it('Should set focus to input when label input is clicked', () => {
+      const { sut } = makeSut({ validationError: faker.random.words() })
+      const emailInputLabel = sut.getByTestId('email-label')
+      const emailInput = sut.getByTestId('email')
+      fireEvent.click(emailInputLabel)
+      expect(emailInput).toEqual(window.document.activeElement)
+    })
+
     it('Should show password status error if Validation fails', () => {
       const { sut, validationStub } = makeSut({ validationError: faker.random.words() })
       Helper.populateInputField(sut, 'password')
