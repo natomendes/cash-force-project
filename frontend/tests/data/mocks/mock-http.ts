@@ -1,14 +1,14 @@
 import { faker } from '@faker-js/faker'
 import { HttpPostClient, HttpPostParams, HttpResponse, HttpStatusCode } from '@/data/protocols/http'
 
-export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
+export class HttpPostClientSpy<R> implements HttpPostClient<R> {
   url?: string
-  body?: T
+  body?: any
   response: HttpResponse<R> = {
     statusCode: HttpStatusCode.ok
   }
 
-  async post ({ url, body }: HttpPostParams<T>): Promise<HttpResponse<R>> {
+  async post ({ url, body }: HttpPostParams): Promise<HttpResponse<R>> {
     this.url = url
     this.body = body
 
@@ -16,7 +16,7 @@ export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
   }
 }
 
-export const mockPostResquest = (): HttpPostParams<any> => ({
+export const mockPostResquest = (): HttpPostParams => ({
   url: faker.internet.url(),
   body: faker.random.word()
 })
