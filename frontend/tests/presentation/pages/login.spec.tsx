@@ -1,7 +1,8 @@
 import React from 'react'
 import { faker } from '@faker-js/faker'
 import { Login } from '@/presentation/pages'
-import { ValidationStub, AuthenticationSpy, SaveAccesTokenMock } from '@/tests/presentation/mocks'
+import { ApiContext } from '@/presentation/contexts'
+import { ValidationStub, AuthenticationSpy } from '@/tests/presentation/mocks'
 import { cleanup, fireEvent, RenderResult, waitFor } from '@testing-library/react'
 import * as Helper from '@/tests/presentation/pages/test-helpers'
 import { InvalidCredentialsError } from '@/domain/errors'
@@ -11,7 +12,7 @@ type SutTypes = {
   sut: RenderResult
   validationStub: ValidationStub
   authenticationSpy: AuthenticationSpy
-  saveAccessTokenMock: SaveAccesTokenMock
+  saveAccessTokenMock: (accessToken: string) => void
 }
 
 type SutParams = {
@@ -21,14 +22,15 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
-  const saveAccessTokenMock = new SaveAccesTokenMock()
   validationStub.errorMessage = params?.validationError
+  const saveAccessTokenMock = jest.fn()
   const sut = renderWithRouter(
-    <Login
-      validation={validationStub}
-      authentication={authenticationSpy}
-      saveAccessToken={saveAccessTokenMock}
-    />, { route: '/login' }
+    <ApiContext.Provider value={{ saveAccessToken: saveAccessTokenMock }}>
+      <Login
+        validation={validationStub}
+        authentication={authenticationSpy}
+      />
+    </ApiContext.Provider>, { route: '/login' }
   )
   return {
     sut,
@@ -170,18 +172,6 @@ describe('Login Page', () => {
       Helper.simulateLoginSubmit(sut)
       await waitFor(async () => {
         Helper.awaitSubmitAsyncProcess(saveAccessTokenMock, authenticationSpy)
-      })
-    })
-
-    it('Should present error if SaveAccessToken fails', async () => {
-      const { sut, saveAccessTokenMock } = makeSut()
-      const error = new InvalidCredentialsError()
-      jest.spyOn(saveAccessTokenMock, 'save')
-        .mockRejectedValueOnce(error)
-      Helper.simulateLoginSubmit(sut)
-      await waitFor(() => {
-        Helper.checkElementNotExists(sut, 'spinner')
-        Helper.checkElementTextContent(sut, 'error-message-span', error.message)
       })
     })
 

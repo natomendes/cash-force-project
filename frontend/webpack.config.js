@@ -50,7 +50,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://localhost:8080')
+      'process.env.API_URL': JSON.stringify('https://cashforceapi.renatolmendes.com')
     })
   ]
 }

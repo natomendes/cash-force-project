@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Context from '@/presentation/contexts/form/form-context'
+import { FormContext } from '@/presentation/contexts'
 import Spinner from '@/presentation/components/spinner/spinner'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 }
 
 const SubmitButton: React.FC<Props> = ({ text }: Props) => {
-  const { state } = useContext(Context)
+  const { state } = useContext(FormContext)
   return (
     <button
       type="submit"

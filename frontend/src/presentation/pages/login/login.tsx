@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Styles from './login-styles.scss'
-import { Authentication, SaveAccessToken } from '@/domain/usecases'
+import { Authentication } from '@/domain/usecases'
 import { Validation } from '@/presentation/protocols'
-import Context from '@/presentation/contexts/form/form-context'
+import { FormContext, ApiContext } from '@/presentation/contexts'
 import { LoginHeader, Footer, Input, FormStatus } from '@/presentation/components'
 import { initialState } from './login-initial-state'
 import SubmitButton from '@/presentation/components/submit-button/submit-button'
@@ -11,11 +11,11 @@ import SubmitButton from '@/presentation/components/submit-button/submit-button'
 type Props = {
   validation: Validation
   authentication: Authentication
-  saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const navigate = useNavigate()
+  const { saveAccessToken } = useContext(ApiContext)
   const [state, setState] = useState(initialState)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
       if (!state.isLoading && !state.isFormInvalid) {
         setState({ ...state, isLoading: true })
         const { accessToken } = await authentication.auth({ email: state.email, password: state.password })
-        await saveAccessToken.save(accessToken)
+        saveAccessToken(accessToken)
         navigate('/', { replace: true })
       }
     } catch (error) {
@@ -50,7 +50,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
     <div className={Styles.login}>
       <LoginHeader />
 
-      <Context.Provider value={{ state, setState }}>
+      <FormContext.Provider value={{ state, setState }}>
         <form
           className={Styles.form}
           onSubmit={handleSubmit}
@@ -73,7 +73,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
 
           <FormStatus />
         </form>
-      </Context.Provider>
+      </FormContext.Provider>
 
       <Footer />
     </div>
