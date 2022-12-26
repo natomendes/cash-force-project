@@ -22,9 +22,9 @@ describe('CurrentAccessTokenAdapter', () => {
   })
 
   it('Should return an account on LocalStorageAdapter.get success', () => {
-    const account = mockAccountModel()
-    jest.spyOn(LocalStorageAdapter.prototype, 'get').mockReturnValueOnce(account)
+    const user = mockAccountModel()
+    jest.spyOn(LocalStorageAdapter.prototype, 'get').mockReturnValueOnce({ user })
     const accessToken = getCurrentAccountAdapter()
-    expect(accessToken).toBe(account)
+    expect(accessToken).toBe(user)
   })
 })

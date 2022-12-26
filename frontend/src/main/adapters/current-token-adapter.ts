@@ -6,5 +6,6 @@ export const setCurrentAccountAdapter = (account: AccountModel): void => {
 }
 
 export const getCurrentAccountAdapter = (): AccountModel => {
-  return makeLocalStorageAdapter().get('account')
+  const value = makeLocalStorageAdapter().get('account')
+  return value ? value.user : value
 }

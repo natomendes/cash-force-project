@@ -16,11 +16,11 @@ describe('PrivateRoute', () => {
     return renderWithRouter(
       <ApiContext.Provider value={{ getCurrentAccount: () => account }} >
         <Routes>
-          <Route path="/" element={
-            <PrivateRoute>
-              <div>Private Route Mock</div>
-            </PrivateRoute>
-          } />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={
+              <div>Teste Componente</div>
+            } />
+          </Route>
           <Route path="/login" element={
             <div>Login Mock</div>
           }/>

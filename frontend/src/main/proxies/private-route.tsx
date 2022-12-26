@@ -1,15 +1,12 @@
 import React, { useContext } from 'react'
 import { ApiContext } from '@/presentation/contexts'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useOutlet } from 'react-router-dom'
 
-type Props = {
-  children: JSX.Element
-}
-
-const PrivateRoute = ({ children }: Props): JSX.Element => {
+const PrivateRoute = (): JSX.Element => {
   const { getCurrentAccount } = useContext(ApiContext)
+  const outlet = useOutlet()
   const account = getCurrentAccount()
-  return account?.accessToken ? children : <Navigate to="/login" />
+  return account?.accessToken ? outlet : <Navigate to="/login" replace={true} />
 }
 
 export default PrivateRoute
