@@ -3,6 +3,8 @@ import { ApiContext } from '@/presentation/contexts'
 import { setCurrentTokenAdapter } from '@/main/adapters/current-token-adapter'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react'
+import { Dashboard } from '@/presentation/pages'
+import PrivateRoute from '../proxies/private-route'
 
 const Router: React.FC = () => {
   return (
@@ -13,6 +15,12 @@ const Router: React.FC = () => {
     >
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
           <Route path='/login' element={makeLoginPage({})} />
         </Routes>
       </BrowserRouter>

@@ -3,6 +3,10 @@ import { setCurrentTokenAdapter, getCurrentTokenAdapter } from '@/main/adapters/
 import 'jest-localstorage-mock'
 
 describe('CurrentAccessTokenAdapter', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
   it('Should call LocalStorageAdapter.set with correct values', () => {
     const setSpy = jest.spyOn(LocalStorageAdapter.prototype, 'set')
     setCurrentTokenAdapter('any_token')
