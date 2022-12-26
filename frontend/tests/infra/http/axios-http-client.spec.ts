@@ -56,5 +56,17 @@ describe('AxiosHttpClient', () => {
         body: mockedAxiosPostResult.data
       })
     })
+
+    it('Should return the correct statusCode and body on failure', async () => {
+      jest.spyOn(axios, 'get').mockRejectedValueOnce({
+        response: mockedAxiosPostResult
+      })
+      const sut = makeSut()
+      const httpResponse = await sut.get(mockGetResquest())
+      expect(httpResponse).toEqual({
+        statusCode: mockedAxiosPostResult.status,
+        body: mockedAxiosPostResult.data
+      })
+    })
   })
 })
