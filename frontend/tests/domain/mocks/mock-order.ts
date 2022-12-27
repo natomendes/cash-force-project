@@ -4,11 +4,11 @@ import { OrderModel } from '../models'
 const mockOrder = (): OrderModel => ({
   id: faker.datatype.number(),
   orderNumber: faker.datatype.string(),
-  buyer: {
+  Buyer: {
     id: faker.datatype.number(),
     name: faker.datatype.string()
   },
-  provider: {
+  Provider: {
     id: faker.datatype.number(),
     name: faker.datatype.string()
   },

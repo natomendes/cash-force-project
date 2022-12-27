@@ -11,8 +11,8 @@ export type OrderBuyer = {
 export interface OrderModel {
   id: number
   orderNumber: string
-  buyer: OrderBuyer
-  provider: OrderProvider
+  Buyer: OrderBuyer
+  Provider: OrderProvider
   emissionDate: string
   value: string
   orderStatusBuyer: string

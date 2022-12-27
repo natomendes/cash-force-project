@@ -1,3 +1,8 @@
+import { OrderModel } from '@/domain/models'
 import { createContext } from 'react'
 
-export default createContext(null)
+type Props = {
+  orders: OrderModel[]
+}
+
+export default createContext<Props>(null)

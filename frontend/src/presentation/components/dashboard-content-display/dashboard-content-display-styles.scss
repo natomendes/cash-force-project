@@ -4,20 +4,6 @@
   display: flex;
   flex-direction: column;
 
-  .displayHeader {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 16px 30px;
-
-    p {
-      color: $lightGray;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 16px;
-      text-transform: uppercase;
-    }
-  }
-
   .displayItem {
     align-items: center;
     border: 1px solid $borderColor;

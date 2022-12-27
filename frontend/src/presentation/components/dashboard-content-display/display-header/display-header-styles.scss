@@ -1,0 +1,15 @@
+@import "../../../styles/colors.scss";
+
+.displayHeader {
+  display: grid;
+  grid-template-columns: 10% 18% 18% 10% 10% 19% 15%;
+  padding: 16px 30px;
+
+  p {
+    color: $lightGray;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+}
