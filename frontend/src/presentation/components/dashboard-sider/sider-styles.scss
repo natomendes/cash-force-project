@@ -1,0 +1,26 @@
+@import "../../styles/colors.scss";
+
+.sider {
+  width: 288px;
+
+  .siderHeader {
+    padding: 24px 0 24px 24px;    
+  }
+
+  .menu {
+    .menuItem {
+      align-items: center;
+      border-left: 4px solid $primary;
+      border-radius: 4px;
+      display: flex;
+      gap: 15px;
+      padding-left: 24px;
+
+      p {
+        color: $primary;
+        font-weight: 500;
+        line-height: 64px;
+      }
+    }
+  }
+}

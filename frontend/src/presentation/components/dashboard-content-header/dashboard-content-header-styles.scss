@@ -1,0 +1,26 @@
+@import "../../styles/colors.scss";
+
+.header {
+  .heroItem {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    svg {
+      path {
+        stroke: $primaryDarkBlue;
+      }
+    }
+
+    p {
+      color: $primaryDarkBlue;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+    }  
+  }
+
+  p {
+    color: $primaryLightBlue;
+    line-height: 20px;
+  }
+}  
