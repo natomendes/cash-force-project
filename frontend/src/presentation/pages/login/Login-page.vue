@@ -29,6 +29,14 @@
         :title="errors.passwordError"
       />
       <button
+        v-if="isLoading"
+        type="submit"
+        :disabled="errors.emailError || errors.passwordError"
+      >
+        <Spinner />
+      </button>
+      <button
+        v-else
         type="submit"
         :disabled="errors.emailError || errors.passwordError"
       >
@@ -47,6 +55,7 @@
 
 <script>
 import FormInput from '@/presentation/components/input/input.vue'
+import Spinner from '@/presentation/components/spinner/spinner.vue'
 import { defineComponent } from 'vue'
 import { makeLoginValidation } from '@/main/factories/pages/login'
 import { makeRemoteAuthentication } from '@/main/factories/usecases/authentication'
@@ -56,7 +65,8 @@ const authentication = makeRemoteAuthentication()
 
 export default defineComponent({
   components: {
-    FormInput
+    FormInput,
+    Spinner
   },
   inject: ['ApiContext'],
   data: () => ({

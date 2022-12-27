@@ -63,6 +63,4 @@ export default defineComponent({
 })
 </script>
 
-<style module lang="scss">
-  @import './input-styles.scss';
-</style>
+<style module src="./input-styles.scss" lang="scss" />
