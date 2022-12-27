@@ -6,7 +6,6 @@ import DisplayItem from './display-item/display-item'
 
 const ContentDisplay: React.FC = () => {
   const { orders } = useContext(DashboardContext)
-  console.log(orders[0])
   return (
       <div className={Styles.contentDisplay}>
         <DisplayHeader />

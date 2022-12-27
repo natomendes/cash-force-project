@@ -10,6 +10,8 @@
   .menu {
     .menuItem {
       align-items: center;
+      background: $backgroundLight;
+      box-shadow: 0px 5px 3px -1px $boxShadowColor;
       border-left: 4px solid $primary;
       border-radius: 4px;
       display: flex;

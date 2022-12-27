@@ -25,7 +25,7 @@ const Input: React.FC<Props> = (props: Props) => {
       </label>
       <span
         data-testid={`${props.name}-status`}
-        title={error || `Your ${props.name} is valid`}
+        title={error || `${props.name} válido`}
         className={Styles.status}
       >
         {error ? '🔴' : '🟢'}
