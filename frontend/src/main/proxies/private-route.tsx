@@ -6,7 +6,7 @@ const PrivateRoute = (): JSX.Element => {
   const { getCurrentAccount } = useContext(ApiContext)
   const outlet = useOutlet()
   const account = getCurrentAccount()
-  return account?.accessToken ? outlet : <Navigate to="/login" replace={true} />
+  return account ? outlet : <Navigate to="/login" replace={true} />
 }
 
 export default PrivateRoute

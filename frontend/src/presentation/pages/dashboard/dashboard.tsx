@@ -1,8 +1,12 @@
 import Styles from './dashboard-styles.scss'
 import React from 'react'
 import { Logo } from '@/presentation/components'
+import { OrderModel } from '@/domain/models'
+import { useLoaderData } from 'react-router-dom'
 
 const Dashboard: React.FC = () => {
+  const orders = useLoaderData() as OrderModel[]
+  console.log(orders)
   return (
     <div className={Styles.dashboard}>
       <div className={Styles.sider}>
