@@ -6,9 +6,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "esModuleInterop": true,
     "noImplicitThis": true,
     "module": "esnext",
-    "isolatedModules": true,
     "moduleResolution": "node",
     "rootDirs": ["src", "tests"],
     "baseUrl": "src",
@@ -16,7 +16,11 @@
       "@/*": ["*"],
       "@/tests/*": ["../tests/*"]
     },
-    "allowJs": true
+    "allowJs": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", "tests"]
+  "include": ["src", "tests"],
+  "files": [
+    "./src/main/config/vue-shims.d.ts",
+  ]
 }
