@@ -6,18 +6,17 @@
       "dom.iterable",
       "esnext"
     ],
-    "esModuleInterop": true,
+    "noImplicitThis": true,
     "module": "esnext",
+    "isolatedModules": true,
     "moduleResolution": "node",
-    "jsx": "react",
     "rootDirs": ["src", "tests"],
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
       "@/tests/*": ["../tests/*"]
     },
-    "allowJs": true,
-    "resolveJsonModule": true
+    "allowJs": true
   },
   "include": ["src", "tests"]
 }

@@ -11,7 +11,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'scss'],
+    extensions: ['.ts', '.js', 'scss'],
     alias: {
       '@': path.join(__dirname, 'src')
     }
@@ -43,8 +43,6 @@ module.exports = {
     historyApiFallback: true
   },
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
   },
   devtool: 'inline-source-map',
   plugins: [
