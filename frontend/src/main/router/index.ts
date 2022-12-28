@@ -1,7 +1,7 @@
 import Login from '@/presentation/pages/login/Login-page.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCurrentAccountAdapter } from '../adapters/current-token-adapter'
-import AppVue from '../config/App.vue'
+import Dashboard from '@/presentation/pages/dashboard/dashboard.vue'
 
 const routes = [{
   path: '/login',
@@ -9,8 +9,8 @@ const routes = [{
   component: Login
 }, {
   path: '/',
-  name: 'App',
-  component: AppVue
+  name: 'Dashboard',
+  component: Dashboard
 }]
 
 const router = createRouter({

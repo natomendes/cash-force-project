@@ -1,0 +1,103 @@
+@import "../../styles/colors.scss";
+
+.dashboard {
+  display: flex;
+
+  .main {
+    background: $white;
+    box-shadow: 0px 10px 30px $boxShadowColor;
+    flex-grow: 1;
+    min-height: 100vh;
+
+    .header {
+      border-bottom: 1px solid $borderColor;
+      height: 64px;      
+    }
+
+    .content {
+      padding: 48px;
+      max-width: 1600px;
+
+      .contentHeader {
+        .heroItem {
+          align-items: center;
+          display: flex;
+          gap: 10px;
+      
+          p {
+            color: $primaryDarkBlue;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 28px;
+          }  
+        }
+      
+        p {
+          color: $primaryLightBlue;
+          line-height: 20px;
+        }
+      }
+
+      .displayHeader {
+        display: grid;
+        grid-template-columns: 10% 18% 18% 10% 10% 19% 15%;
+        padding: 16px 30px;
+      
+        p {
+          color: $lightGray;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 16px;
+          text-transform: uppercase;
+        }
+      }
+
+      .displayItem {
+        align-items: center;
+        border: 1px solid $borderColor;
+        border-radius: 6px;
+        display: grid;
+        grid-template-columns: 10% 18% 18% 10% 10% 19% 15%;
+        grid-template-rows: auto;
+        margin-bottom: 16px;
+        padding: 6px 30px;
+      
+        &:hover {
+          background: $backgroundLight;
+          box-shadow: 0px 3px 3px $boxShadowColor;
+          border: 1px solid $boxShadowColor;
+        }
+      
+        p {
+          color: $textBlue;
+          font-weight: 500;
+          line-height: 18px;
+        }
+      
+        .greenColor {
+          color: $primary;
+        }
+      
+        .borderedParagraph {
+          border: 1px solid $borderBlue;
+          border-radius: 24px;
+          font-size: 12px;
+          justify-self: right;
+          line-height: 16px;
+          padding: 8px 30px;
+      
+          &:hover {
+            background: $primaryLight;
+            color: $primaryDarkBlue;
+            cursor: pointer;
+            box-shadow: 0px 5px 8px $boxShadowColor;
+          }
+          @media only screen and (max-width: 1560px) {
+            padding: 8px 20px;
+          }
+        }
+      }
+      
+    }
+  }
+}
