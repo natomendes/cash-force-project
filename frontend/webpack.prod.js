@@ -1,6 +1,7 @@
 const { DefinePlugin } = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
@@ -32,9 +33,12 @@ module.exports = merge(common, {
       }]
     }]
   },
+  externals: {
+    axios: 'axios'
+  },
   plugins: [
     new DefinePlugin({
-      'process.env.API_URL': JSON.stringify('https://fordevs.herokuapp.com/api')
+      'process.env.API_URL': JSON.stringify('http://localhost:5050')
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
@@ -42,6 +46,11 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin({
       template: './template.prod.html'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public'}
+      ]
     })
   ]
 })

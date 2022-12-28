@@ -7,3 +7,4 @@ webpack.prod.js
 webpack.dev.js
 webpack.common.js
 jest.config.js
+index.js
