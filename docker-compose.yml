@@ -37,6 +37,4 @@ services:
       - ./frontend/package.json:/api/package.json
       - ./frontend/index.js:/api/index.js
     ports:
-      - "3000:3000"
-    environment:
-      - API_URL=backend:5050
+      - "8080:8080"
