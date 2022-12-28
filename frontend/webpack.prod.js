@@ -1,4 +1,5 @@
 const { DefinePlugin } = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { merge } = require('webpack-merge')
@@ -37,7 +38,10 @@ module.exports = merge(common, {
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'main-bundle-[hash].css'
+      filename: 'main-bundle-[fullhash].css'
     }),
+    new HtmlWebpackPlugin({
+      template: './template.prod.html'
+    })
   ]
 })

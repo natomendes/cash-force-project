@@ -1,4 +1,5 @@
 const { DefinePlugin } = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
@@ -44,6 +45,9 @@ module.exports = merge(common, {
       '__VUE_OPTIONS_API__': true,
       '__VUE_PROD_DEVTOOLS__': false,
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: './template.dev.html'
+    })
   ]
 })
