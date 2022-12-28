@@ -88,14 +88,12 @@ export default defineComponent({
   updated () {
     this.errors.emailError = validation.validate('email', this.loginData)
     this.errors.passwordError = validation.validate('password', this.loginData)
-    console.log(this.errors)
   },
   methods: {
     async submitLogin () {
       try {
         if (!this.isLoading &&
         !this.errors.emailError && !this.errors.passwordError) {
-          console.log('aqui')
           this.isLoading = true
           const account = await authentication.auth(this.loginData)
           apiStore.saveCurrentAccount(account)

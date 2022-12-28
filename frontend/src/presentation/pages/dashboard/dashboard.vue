@@ -91,7 +91,6 @@ export default defineComponent({
     if (account) {
       const orders = await loadOrdersByToken.loadAll(account.accessToken)
       this.orders = orders
-      console.log(this.orders)
     } else {
       this.$router.push({ name: 'Login', replace: true })
     }

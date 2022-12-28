@@ -18,6 +18,7 @@
       display: flex;
       gap: 15px;
       padding-left: 24px;
+      transition: color 500ms ease, box-shadow .1s linear;
 
       p {
         color: $primary;
