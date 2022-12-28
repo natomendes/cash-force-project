@@ -21,6 +21,6 @@
   },
   "include": ["src", "tests"],
   "files": [
-    "./src/main/config/vue-shims.d.ts",
+    "./src/main/config/vue-shims.d.ts"
   ]
 }
