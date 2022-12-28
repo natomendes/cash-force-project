@@ -26,3 +26,17 @@ services:
       - "9222:9222"
     environment:
       - MYSQL_DBHOST=database
+  frontend:
+    container_name: vue-api
+    image: node:18
+    working_dir: /api
+    restart: always
+    command: bash -c "npm install --omit=dev && npm start"
+    volumes:
+      - ./frontend/dist:/api/dist
+      - ./frontend/package.json:/api/package.json
+      - ./frontend/index.js:/api/index.js
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=backend:5050

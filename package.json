@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-staged:front": "cd frontend && npx lint-staged",
     "lint-staged:back": "cd backend && npx lint-staged",
-    "preup": "cd backend && npm run build",
-    "up": "docker-compose up -d"
+    "build:back": "cd backend && npm run build",
+    "build:front": "cd frontend && npm run build",
+    "preup": "npm run build:back && npm run build:front",
+    "up": "docker-compose up"
   },
   "keywords": [],
   "author": "",
