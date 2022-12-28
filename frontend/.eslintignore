@@ -1,6 +1,6 @@
 node_modules
 coverage
-public
+dist
 *.scss
 webpack.config.js
 webpack.prod.js
