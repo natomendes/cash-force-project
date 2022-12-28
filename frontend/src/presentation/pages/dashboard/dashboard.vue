@@ -35,16 +35,20 @@
           </p>
           <p :class="$style.headerItem" />
         </div>
-        <div :class="$style.displayItem">
-          <p>{order.orderNumber}</p>
-          <p>{order.Buyer.name}</p>
-          <p>{order.Provider.name}</p>
-          <p>{date}</p>
+        <div
+          v-for="order of orders"
+          :key="order.id"
+          :class="$style.displayItem"
+        >
+          <p>{{ order.orderNumber }}</p>
+          <p>{{ order.Buyer.name }}</p>
+          <p>{{ order.Provider.name }}</p>
+          <p>{{ getDate(order.emissionDate) }}</p>
           <p :class="$style.greenColor">
-            {value}
+            {{ getValue(order.value) }}
           </p>
           <p :class="$style.greenColor">
-            {statusOptions[order.orderStatusBuyer]}
+            {{ statusOptions[order.orderStatusBuyer] }}
           </p>
           <p :class="$style.borderedParagraph">
             Dados do cedente
@@ -58,14 +62,48 @@
 <script>
 import { defineComponent } from 'vue'
 import Sider from '@/presentation/components/dashboard-components/sider/sider.vue'
+import { makeRemoteLoadOrdersByToken } from '@/main/factories/usecases/load-orders'
+import { getCurrentAccountAdapter } from '@/main/adapters/current-token-adapter'
+
+const loadOrdersByToken = makeRemoteLoadOrdersByToken()
 
 export default defineComponent({
   components: {
     Sider
   },
   data: () => ({
-    handShakeBlueImage: 'assets/images/handshake-blue.svg'
-  })
+    handShakeBlueImage: 'assets/images/handshake-blue.svg',
+    orders: [],
+    statusOptions: [
+      'Pendente de confirmação',
+      'Pedido confirmado',
+      'Não reconhece o pedido',
+      'Mercadoria não recebida',
+      'Recebida com avaria',
+      'Devolvida',
+      'Recebida com devolução parcial',
+      'Recebida e confirmada',
+      'Pagamento Autorizado'
+    ]
+  }),
+  async created () {
+    const account = getCurrentAccountAdapter()
+    if (account) {
+      const orders = await loadOrdersByToken.loadAll(account.accessToken)
+      this.orders = orders
+      console.log(this.orders)
+    } else {
+      this.$router.push({ name: 'Login', replace: true })
+    }
+  },
+  methods: {
+    getDate: (emissionDate) => {
+      return new Date(emissionDate).toLocaleString('pt-BR', { dateStyle: 'short' })
+    },
+    getValue: (value) => {
+      return (Number(value) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
+  }
 })
 </script>
 

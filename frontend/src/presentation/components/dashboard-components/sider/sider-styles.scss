@@ -10,10 +10,11 @@
   .menu {
     .menuItem {
       align-items: center;
-      background: $backgroundLight;
+      background: $boxShadowColor;
       box-shadow: 0px 5px 3px -1px $boxShadowColor;
       border-left: 4px solid $primary;
       border-radius: 4px;
+      cursor: pointer;
       display: flex;
       gap: 15px;
       padding-left: 24px;
@@ -22,6 +23,14 @@
         color: $primary;
         font-weight: 500;
         line-height: 64px;
+      }
+
+      &:hover {
+        background: $backgroundLight;
+      }
+
+      &:active {
+        box-shadow: none;
       }
     }
   }
