@@ -1,7 +1,6 @@
 <template>
   <div
     :class="$style.login"
-    @updateValue="updateValue"
   >
     <header :class="$style.header">
       <img
@@ -31,14 +30,14 @@
       <button
         v-if="isLoading"
         type="submit"
-        :disabled="errors.emailError || errors.passwordError"
+        :disabled="!!errors.emailError || !!errors.passwordError"
       >
         <Spinner />
       </button>
       <button
         v-else
         type="submit"
-        :disabled="errors.emailError || errors.passwordError"
+        :disabled="!!errors.emailError || !!errors.passwordError"
       >
         Entrar
       </button>
@@ -56,9 +55,10 @@
 <script>
 import FormInput from '@/presentation/components/input/input.vue'
 import Spinner from '@/presentation/components/spinner/spinner.vue'
-import { defineComponent } from 'vue'
-import { makeLoginValidation } from '@/main/factories/pages/login'
+import { apiStore } from '@/presentation/store/api-store'
 import { makeRemoteAuthentication } from '@/main/factories/usecases/authentication'
+import { makeLoginValidation } from '@/main/factories/pages/login'
+import { defineComponent } from 'vue'
 
 const validation = makeLoginValidation()
 const authentication = makeRemoteAuthentication()
@@ -68,7 +68,6 @@ export default defineComponent({
     FormInput,
     Spinner
   },
-  inject: ['ApiContext'],
   data: () => ({
     logoImage: 'assets/images/logo.svg',
     isLoading: false,
@@ -99,7 +98,7 @@ export default defineComponent({
           console.log('aqui')
           this.isLoading = true
           const account = await authentication.auth(this.loginData)
-          this.ApiContext.saveCurrentAccount(account)
+          apiStore.saveCurrentAccount(account)
           this.$router.push({ path: '/', replace: true })
         }
       } catch (error) {

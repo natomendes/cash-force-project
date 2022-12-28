@@ -63,7 +63,7 @@
 import { defineComponent } from 'vue'
 import Sider from '@/presentation/components/dashboard-components/sider/sider.vue'
 import { makeRemoteLoadOrdersByToken } from '@/main/factories/usecases/load-orders'
-import { getCurrentAccountAdapter } from '@/main/adapters/current-token-adapter'
+import { apiStore } from '@/presentation/store/api-store'
 
 const loadOrdersByToken = makeRemoteLoadOrdersByToken()
 
@@ -87,7 +87,7 @@ export default defineComponent({
     ]
   }),
   async created () {
-    const account = getCurrentAccountAdapter()
+    const account = apiStore.loadCurrentAccount()
     if (account) {
       const orders = await loadOrdersByToken.loadAll(account.accessToken)
       this.orders = orders
