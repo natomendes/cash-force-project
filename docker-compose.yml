@@ -6,6 +6,7 @@ services:
     image: mysql:8.0.31
     volumes:
       - ./sql-dump:/docker-entrypoint-initdb.d
+      - ./database:/var/lib/mysql
     restart: always
     ports:
       - "3306:3306"
@@ -13,28 +14,21 @@ services:
       - MYSQL_DATABASE=cashforce_v3
       - MYSQL_ROOT_PASSWORD=123456
   backend:
-    container_name: node-api
-    image: node:18
-    working_dir: /api
+    build: ./backend
+    image: node-api
     restart: always
-    command: bash -c "npm install --omit=dev && npm start"
-    volumes:
-      - ./backend/dist:/api/dist
-      - ./backend/package.json:/api/package.json
     ports:
       - "5050:5050"
       - "9222:9222"
     environment:
       - MYSQL_DBHOST=database
+    depends_on:
+      - database
   frontend:
-    container_name: vue-api
-    image: node:18
-    working_dir: /api
+    build: ./frontend
+    image: vue-api
     restart: always
-    command: bash -c "npm install --omit=dev && npm start"
-    volumes:
-      - ./frontend/dist:/api/dist
-      - ./frontend/package.json:/api/package.json
-      - ./frontend/index.js:/api/index.js
     ports:
       - "8080:8080"
+    depends_on:
+      - backend
