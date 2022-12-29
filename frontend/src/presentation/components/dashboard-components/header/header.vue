@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
 import { apiStore } from '@/presentation/store/api-store'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   data: () => ({

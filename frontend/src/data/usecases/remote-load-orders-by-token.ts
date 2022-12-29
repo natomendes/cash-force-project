@@ -1,7 +1,7 @@
 import { OrderModel } from '@/domain/models'
+import { UnexpectedError } from '@/domain/errors'
 import { LoadOrdersByToken } from '@/domain/usecases/load-orders-by-token'
 import { HttpGetClient, HttpStatusCode } from '@/data/protocols/http'
-import { UnexpectedError } from '@/domain/errors'
 
 export class RemoteLoadOrdersByToken implements LoadOrdersByToken {
   constructor (

@@ -1,7 +1,7 @@
 import Login from '@/presentation/pages/login/Login-page.vue'
-import { createRouter, createWebHistory } from 'vue-router'
-import { getCurrentAccountAdapter } from '../adapters/current-token-adapter'
+import { getCurrentAccountAdapter } from '@/main/adapters/current-token-adapter'
 import Dashboard from '@/presentation/pages/dashboard/dashboard.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [{
   path: '/login',

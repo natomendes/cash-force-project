@@ -1,1 +1,1 @@
-export * from './remote-load-orders=by-token-factory'
+export * from './remote-load-orders-by-token-factory'

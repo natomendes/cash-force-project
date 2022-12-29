@@ -13,14 +13,14 @@
       @submit.prevent="submitLogin"
     >
       <h2>Login</h2>
-      <FormInput
+      <Input
         v-model="loginData.email"
         type="email"
         name="email"
         placeholder="Digite seu e-mail"
         :title="errors.emailError"
       />
-      <FormInput
+      <Input
         v-model="loginData.password"
         type="password"
         name="password"
@@ -53,8 +53,7 @@
 </template>
 
 <script>
-import FormInput from '@/presentation/components/input/input.vue'
-import Spinner from '@/presentation/components/spinner/spinner.vue'
+import { Input, Spinner } from '@/presentation/components'
 import { apiStore } from '@/presentation/store/api-store'
 import { makeRemoteAuthentication } from '@/main/factories/usecases/authentication'
 import { makeLoginValidation } from '@/main/factories/pages/login'
@@ -65,7 +64,7 @@ const authentication = makeRemoteAuthentication()
 
 export default defineComponent({
   components: {
-    FormInput,
+    Input,
     Spinner
   },
   data: () => ({
