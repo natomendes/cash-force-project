@@ -41,7 +41,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   plugins: [
     new DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://localhost:5050'),
+      'process.env.API_URL': JSON.stringify('https://cashforce.renatolmendes.com/api'),
       '__VUE_OPTIONS_API__': true,
       '__VUE_PROD_DEVTOOLS__': false,
     }),
