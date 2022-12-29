@@ -50,9 +50,11 @@
           <p :class="$style.greenColor">
             {{ statusOptions[order.orderStatusBuyer] }}
           </p>
-          <p :class="$style.borderedParagraph">
-            Dados do cedente
-          </p>
+          <div :class="$style.wrapper">
+            <p :class="$style.borderedParagraph">
+              Dados do cedente
+            </p>
+          </div>
         </div>
       </div>
     </div>

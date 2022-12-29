@@ -52,7 +52,7 @@
         border: 1px solid $borderColor;
         border-radius: 6px;
         display: grid;
-        grid-template-columns: 10% 18% 18% 10% 10% 19% 15%;
+        grid-template-columns: 10% 16% 16% 10% 10% 21% 17%;
         grid-template-rows: auto;
         margin-bottom: 16px;
         padding: 6px 30px;
@@ -73,31 +73,42 @@
         .greenColor {
           color: $primary;
         }
-      
-        .borderedParagraph {
+
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          justify-self: right;
           border: 1px solid $borderBlue;
           border-radius: 24px;
           box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
-          font-size: 12px;
-          justify-self: right;
-          line-height: 16px;
           padding: 8px 30px;
-          transition: box-shadow .1s linear, background-color 300ms ease;
+          
+          .borderedParagraph {
+            font-size: 12px;
+            justify-self: center;
+            line-height: 16px;
+            transition: box-shadow .1s linear, background-color 300ms ease;
+            min-width: 0;
+            
+          }
       
           &:hover {
             background: $primaryLight;
             box-shadow: 0 1px 1px -1px #3c40434d, 0 1px 2px 1px #3c404326;
             color: $primaryDarkBlue;
             cursor: pointer;
+            p {
+              cursor: pointer;
+            }
           }
 
           &:active {
             box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
           }
           @media only screen and (max-width: 1560px) {
-            padding: 8px 20px;
+              padding: 8px 10px;
           }
-        }
+        }      
       }
     }
   }
