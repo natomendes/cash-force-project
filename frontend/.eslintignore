@@ -2,6 +2,7 @@ node_modules
 coverage
 dist
 *.scss
+*.svg
 webpack.config.js
 webpack.prod.js
 webpack.dev.js
