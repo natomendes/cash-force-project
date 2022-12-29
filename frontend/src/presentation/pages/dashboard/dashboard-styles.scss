@@ -51,17 +51,12 @@
         align-items: center;
         border: 1px solid $borderColor;
         border-radius: 6px;
+        box-shadow: 0px 3px 3px $boxShadowColor;
         display: grid;
         grid-template-columns: 10% 16% 16% 10% 10% 21% 17%;
         grid-template-rows: auto;
         margin-bottom: 16px;
         padding: 6px 30px;
-      
-        &:hover {
-          background: $backgroundLight;
-          box-shadow: 0px 3px 3px $boxShadowColor;
-          border: 1px solid $boxShadowColor;
-        }
       
         p {
           color: $textBlue;
