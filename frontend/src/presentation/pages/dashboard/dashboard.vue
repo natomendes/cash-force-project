@@ -2,7 +2,7 @@
   <div :class="$style.dashboard">
     <Sider />
     <div :class="$style.main">
-      <div :class="$style.header" />
+      <MainHeader />
       <div :class="$style.content">
         <div :class="$style.contentHeader">
           <div :class="$style.heroItem">
@@ -62,6 +62,7 @@
 <script>
 import { defineComponent } from 'vue'
 import Sider from '@/presentation/components/dashboard-components/sider/sider.vue'
+import MainHeader from '@/presentation/components/dashboard-components/header/header.vue'
 import { makeRemoteLoadOrdersByToken } from '@/main/factories/usecases/load-orders'
 import { apiStore } from '@/presentation/store/api-store'
 
@@ -69,7 +70,8 @@ const loadOrdersByToken = makeRemoteLoadOrdersByToken()
 
 export default defineComponent({
   components: {
-    Sider
+    Sider,
+    MainHeader
   },
   data: () => ({
     handShakeBlueImage: 'assets/images/handshake-blue.svg',

@@ -1,0 +1,32 @@
+@import "@/presentation/styles/colors.scss";
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid $borderColor;
+  display: flex;  
+  height: 64px;
+  justify-content: flex-end;
+  padding: 12px;
+  
+  img {
+    background: $borderBlue;
+    box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
+    color: $primary;
+    height: 100%;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 6px;
+    transition: box-shadow .1s linear, background-color 300ms ease;
+      
+    &:hover {
+      background: $primaryLight;
+      box-shadow: 0 1px 1px -1px #3c40434d, 0 1px 2px 1px #3c404326;
+      color: $primaryDarkBlue;
+      cursor: pointer;
+    }
+
+    &:active {
+      box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
+    }
+  }
+}
