@@ -87,7 +87,7 @@ A arquitetura está dividida em 5 camadas principais
     <strong>Acessar via link</strong>
   </summary><br>
 
-O projeto está disponível através do link [https://cashforceapi.renatolmendes.com](https://cashforceapi.renatolmendes.com)
+O projeto está disponível através do link [https://cashforceapi.renatolmendes.com](https://cashforce.renatolmendes.com)
 
 <h3>Dados para login</h3>
 
