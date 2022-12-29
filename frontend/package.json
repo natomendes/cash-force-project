@@ -1,7 +1,7 @@
 {
   "name": "cash-force-frontend",
   "version": "1.0.0",
-  "description": "Frontend React API for CashForce",
+  "description": "Frontend Vue API for CashForce",
   "author": "Renato Mendes",
   "keywords": [
     "React",

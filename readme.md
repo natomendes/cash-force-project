@@ -87,7 +87,7 @@ A arquitetura está dividida em 5 camadas principais
     <strong>Acessar via link</strong>
   </summary><br>
 
-O projeto está disponível através do link [https://cashforceapi.renatolmendes.com](https://cashforce.renatolmendes.com)
+O projeto está disponível através do link [https://cashforce.renatolmendes.com](https://cashforce.renatolmendes.com)
 
 <h3>Dados para login</h3>
 
@@ -107,12 +107,7 @@ Para rodar o projeto via docker faça o clone do repositório em sua maquina:
   ```sh
   git clone git@github.com:natomendes/cash-force-project.git
   ```
-Na raiz do projeto rode:
-
-  ```sh
-  npm install
-  ```
-Logo em seguida rode:
+Ainda na raiz do projeto rode:
 
   ```sh
   npm run up

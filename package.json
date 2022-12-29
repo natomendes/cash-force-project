@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-staged:front": "cd frontend && npx lint-staged",
     "lint-staged:back": "cd backend && npx lint-staged",
-    "up": "docker-compose up"
+    "up": "docker-compose up -d"
   },
   "keywords": [],
   "author": "",

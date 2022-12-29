@@ -1,7 +1,7 @@
 {
-  "name": "api",
+  "name": "cash-force-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend Node.js Api for CashForce",
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
