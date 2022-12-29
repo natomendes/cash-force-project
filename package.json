@@ -10,7 +10,8 @@
     "build:back": "cd backend && npm run build",
     "build:front": "cd frontend && npm run build",
     "preup": "npm run build:back && npm run build:front",
-    "up": "docker-compose up"
+    "up": "docker-compose up",
+    "postinstall": "(cd backend && npm install); (cd frontend && npm install)"
   },
   "keywords": [],
   "author": "",
