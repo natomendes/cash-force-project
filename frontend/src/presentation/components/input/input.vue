@@ -11,20 +11,20 @@
       @input="$emit('update:modelValue', $event.target.value)"
     >
     <label @click="focusInput">{{ placeholder }}</label>
-    <span
+    <img
       v-if="title"
+      key="1"
       :class="$style.status"
       :title="title"
+      :src="invalidIcon"
     >
-      🔴
-    </span>
-    <span
+    <img
       v-else
+      key="2"
       :class="$style.status"
       :title="`${$props.name} válido`"
+      :src="validIcon"
     >
-      🟢
-    </span>
   </div>
 </template>
 
@@ -52,6 +52,10 @@ export default defineComponent({
     }
   },
   emits: ['update:modelValue'],
+  data: () => ({
+    invalidIcon: 'assets/icons/invalid.svg',
+    validIcon: 'assets/icons/valid.svg'
+  }),
   methods: {
     handleFocus (event) {
       event.target.readOnly = false

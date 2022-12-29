@@ -20,6 +20,7 @@
 
   &:has(input:not(:placeholder-shown)) {
     border-color: $primaryDark;
+    border-width: 2px;
   }
 
   &:focus-within {
@@ -54,8 +55,9 @@
 
   .status {
     cursor: help;
-    font-size: 10px;
     position: absolute;
+    top: 6px;
     right: 4px;
+    width: 12px;
   }
 }
